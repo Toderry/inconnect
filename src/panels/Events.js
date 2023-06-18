@@ -12,9 +12,9 @@ import EventsList from '../components/EventsList';
 const Events = ({id, go, posts}) => (
 	<Panel id={id}>
 		<PanelHeader
-			before={<PanelHeaderBack onClick={go} data-to="home"/>}
+			//before={<PanelHeaderBack onClick={go} data-to="home"/>}
 		>
-			Привет!
+			События
 		</PanelHeader>
 		<div className="Events">
 			<EventsList posts = {posts} title={'Рекомендации'}/>
