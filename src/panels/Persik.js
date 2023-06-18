@@ -5,11 +5,13 @@ import { Panel, PanelHeader, PanelHeaderBack } from '@vkontakte/vkui';
 
 import persik from '../img/persik.png';
 import './Persik.css';
+import {ROUTES} from "../routes";
 
-const Persik = props => (
-	<Panel id={props.id}>
+const Persik = ({setActiveStory, id}) => (
+	<Panel id={id}>
 		<PanelHeader
-			before={<PanelHeaderBack onClick={props.go} data-to="home"/>}
+			id="persik"
+			before={<PanelHeaderBack onClick={() => setActiveStory(ROUTES.PROFILE)} data-to="profile"/>}
 		>
 			Абоба
 		</PanelHeader>

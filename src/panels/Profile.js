@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Panel, PanelHeader, Header, Button, Group, Cell, Div, Avatar } from '@vkontakte/vkui';
+import {ROUTES} from "../routes";
 
-const Profile = ({ id, go, fetchedUser }) => (
+const Profile = ({ id, setActiveStory, fetchedUser, }) => (
 	<Panel id={id}>
-		<PanelHeader>Дом</PanelHeader>
+		<PanelHeader>Дом дракона</PanelHeader>
 		{fetchedUser &&
 			<Group>
 				<Cell
@@ -19,26 +20,26 @@ const Profile = ({ id, go, fetchedUser }) => (
 
 		<Group>
 			<Div>
-				<Button stretched size="l" mode="secondary" onClick={go} data-to="events">
+				<Button stretched size="l" mode="secondary" onClick={() => setActiveStory(ROUTES.PERSIK)} data-to="persik">
 					Show me the Персика, please
 				</Button>
 			</Div>
 		</Group>
 
-		<Group>
-			<Div>
-				<Button stretched size="l" mode="secondary" onClick={go} data-to="events">
-					Show me the События, please
-				</Button>
-			</Div>
-		</Group>
-		<Group>
-			<Div>
-				<Button stretched size="l" mode="secondary" onClick={go} data-to="registration">
-					Show me the Registration, please
-				</Button>
-			</Div>
-		</Group>
+		{/*<Group>*/}
+		{/*	<Div>*/}
+		{/*		<Button stretched size="l" mode="secondary" onClick={go} data-to="events">*/}
+		{/*			Show me the События, please*/}
+		{/*		</Button>*/}
+		{/*	</Div>*/}
+		{/*</Group>*/}
+		{/*<Group>*/}
+		{/*	<Div>*/}
+		{/*		<Button stretched size="l" mode="secondary" onClick={go} data-to="registration">*/}
+		{/*			Show me the Registration, please*/}
+		{/*		</Button>*/}
+		{/*	</Div>*/}
+		{/*</Group>*/}
 	</Panel>
 );
 
