@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import MyButton from "./UI/dutton/MyButton";
+import {Button} from "@vkontakte/vkui";
 //Прорисовка блока события в ленте
 const PostItem = (props) =>{
     return (
@@ -10,7 +12,11 @@ const PostItem = (props) =>{
                     </div>
                 </div>
                 <div className="post__btns">
-                    <button>подписаться</button>
+                    <Button stretched size="l" mode="secondary">
+                        подписаться
+                    </Button>
+
+                    {/*<MyButton disabled> подписаться </MyButton>*/}
                 </div>
         </div>
 

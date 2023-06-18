@@ -16,14 +16,11 @@ const Events = ({id, go, posts}) => (
 		>
 			Привет!
 		</PanelHeader>
-		<div className="Events">
-			<EventsList posts = {posts} title={'Рекомендации'}/>
-
-		
-
-
-        </div>
-		
+		<Group>
+			<div className="Events">
+				<EventsList posts = {posts} title={'Рекомендации'}/>
+			</div>
+		</Group>
 	</Panel>
 );
 

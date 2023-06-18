@@ -6,11 +6,13 @@ import '@vkontakte/vkui/dist/vkui.css';
 import Home from './panels/Home';
 import Persik from './panels/Persik';
 import Events from './panels/Events';
+import Registration from './panels/Registration';
 
 const ROUTES = {
 	HOME: 'home',
 	EVENTS: 'events',
 	PERSIK: 'persik',
+	REGISTRATION: 'registration',
 
 };
 const App = () => {
@@ -48,6 +50,7 @@ const App = () => {
 								<Home id={ROUTES.HOME} fetchedUser={fetchedUser} go={go} />
 								<Persik id={ROUTES.PERSIK} go={go} />
 								<Events id={ROUTES.EVENTS} posts={posts} go={go} />
+								<Registration id={ROUTES.REGISTRATION} go={go} />
 
 							</View>
 						</SplitCol>
