@@ -5,19 +5,19 @@ import {Button} from "@vkontakte/vkui";
 const PostItem = (props) =>{
     return (
         <div className="post">
-                <div className="post__content">
-                    <strong>{props.post.id} {props.post.title}</strong>
-                    <div>
-                        {props.post.body}
-                    </div>
+            <div className="post__content">
+                <strong>{props.post.id} {props.post.title}</strong>
+                <div>
+                    {props.post.body}
                 </div>
-                <div className="post__btns">
-                    <Button stretched size="l" mode="secondary">
-                        подписаться
-                    </Button>
+            </div>
+            <div className="post__btns">
+                <Button stretched size="l" mode="secondary">
+                    подписаться
+                </Button>
 
-                    {/*<MyButton disabled> подписаться </MyButton>*/}
-                </div>
+                {/*<MyButton disabled> подписаться </MyButton>*/}
+            </div>
         </div>
 
     );

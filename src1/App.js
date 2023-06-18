@@ -3,21 +3,20 @@ import bridge from '@vkontakte/vk-bridge';
 import { View, ScreenSpinner, AdaptivityProvider, AppRoot, ConfigProvider, SplitLayout, SplitCol } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
-import Profile from './panels/Profile';
+import Home from './panels/Home';
 import Persik from './panels/Persik';
 import Events from './panels/Events';
-import Registration from './panels/Registration';
+import Registration from '../src/panels/Registration';
 
 const ROUTES = {
+	HOME: 'home',
 	EVENTS: 'events',
 	PERSIK: 'persik',
 	REGISTRATION: 'registration',
-	PROFILE: 'profile',
 
 };
 const App = () => {
-	const [activePanel, setActivePanel] = useState(ROUTES.EVENTS);
-	const [activeStory, setActiveStory] = React.useState(ROUTES.EVENTS);
+	const [activePanel, setActivePanel] = useState(ROUTES.HOME);
 	const [fetchedUser, setUser] = useState(null);
 	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
 
@@ -48,7 +47,7 @@ const App = () => {
 					<SplitLayout popout={popout}>
 						<SplitCol>
 							<View activePanel={activePanel}>
-								<Profile id={ROUTES.HOME} fetchedUser={fetchedUser} go={go} />
+								<Home id={ROUTES.HOME} fetchedUser={fetchedUser} go={go} />
 								<Persik id={ROUTES.PERSIK} go={go} />
 								<Events id={ROUTES.EVENTS} posts={posts} go={go} />
 								<Registration id={ROUTES.REGISTRATION} go={go} />

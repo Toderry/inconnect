@@ -1,0 +1,13 @@
+.Events {
+  width: 90%;
+  margin: 20px;
+}
+.post{
+  display: flex;
+  padding: 15px;
+  border: 2px solid teal;
+  margin-top: 15px;
+  justify-content: space-between;
+  align-items: center;
+}
+
