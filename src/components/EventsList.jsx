@@ -8,7 +8,7 @@ const EventsList = ({posts, title, setActiveStory, currentPost, setCurrentPost})
 			</h1>
             {posts.map((post) =>
                 <PostItem post={post} key={post.id} setActiveStory={setActiveStory} currentPost={currentPost}
-                setCurrentPost={setCurrentPost}/>
+                          setCurrentPost={setCurrentPost}/>
             )}
 
         </div>

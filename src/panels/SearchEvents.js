@@ -1,27 +1,22 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Panel, PanelHeader, PanelHeaderBack,IconButton } from '@vkontakte/vkui';
-import './SearchEvents.css'
+import { Panel, PanelHeader, PanelHeaderBack, SimpleCell } from '@vkontakte/vkui';
+
+import './SearchEvents.css';
 import EventsList from '../components/EventsList';
 
-import Icon20Sliders_outline from '@vkontakte/icons/dist/20/sliders_outline';
-const SearchEvents = ({id, go, posts}) => (
+
+const SearchEvents = ({id, go, posts, setActiveStory, currentPost, setCurrentPost}) => (
 	<Panel id={id}>
 		<PanelHeader
-			before = {<IconButton>
-				<Icon20Sliders_outline />
-			  </IconButton>}
 			//before={<PanelHeaderBack onClick={go} data-to="home"/>}
 		>
-            Поиск
+			События
 		</PanelHeader>
-		<div className="Events">
-			<EventsList posts = {posts} title={'Рекомендации'}/>
-
-
-
-
+		<div className="SearchEvents">
+			<EventsList posts = {posts} title={'Актуальные события'} setActiveStory={setActiveStory} currentPost={currentPost}
+			setCurrentPost={setCurrentPost}/>
         </div>
 
 	</Panel>
