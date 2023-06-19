@@ -4,4 +4,5 @@ export const ROUTES = {
     SEARCHEVENTS: 'searchevents',
     REGISTRATION: 'registration',
     PROFILE: 'profile',
+    EVENTPAGE: 'eventpage',
 };

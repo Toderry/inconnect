@@ -22,11 +22,15 @@ import Icon28Newsfeed from '@vkontakte/icons/dist/28/newsfeed';
 import {NavigationBar} from "./components/NavBar";
 import {ROUTES} from "./routes";
 
+import PostItem from './components/Postitem';
 
 const App = () => {
     const [activeStory, setActiveStory] = useState(ROUTES.EVENTS);
     const [fetchedUser, setUser] = useState(null);
     const [popout, setPopout] = useState(<ScreenSpinner size='large'/>);
+
+    // Текущее событие
+    const [currentPost, setCurrentPost] = useState({id: -1, title: '-', body: '-'});
 
     const platform = usePlatform();
     const {viewWidth} = useAdaptivityConditionalRender();
@@ -131,7 +135,8 @@ const App = () => {
                             </SplitCol>
                         )}
                         <NavigationBar setActiveStory={setActiveStory} activeStory={activeStory}
-                                       posts={posts} fetchedUser={fetchedUser}
+                                        posts={posts} fetchedUser={fetchedUser}
+                                        currentPost={currentPost} setCurrentPost={setCurrentPost}
                         />
                     </SplitLayout>
                 </AppRoot>
