@@ -52,7 +52,7 @@ const App = () => {
         },
         {
             id: 3,
-            title: 'Вечеринка',
+            title: 'Вечеринка 🕺',
             description: '24 мая 20:00',
             thumb_src: 'https://aerodynamika.ru/wp-content/uploads/2021/12/1625195829_5-kartinkin-com-p-vecherinka-fon-krasivie-foni-5-e1639566218169.jpg',
             body: '🔪'

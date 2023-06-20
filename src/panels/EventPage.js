@@ -10,6 +10,7 @@ import img from "../img/img_not_found.jpg"
 const EventPage = (props) => {
 	const [addText, setAddText] = useState(true);
 	const buttonText = addText ? 'Подписаться' : 'Отписаться';
+	const text = addText ? '' : 'Вы подписанны';
 	return (
 		<Panel>
 			<PanelHeader
@@ -34,7 +35,10 @@ const EventPage = (props) => {
 				<img src={props.currentPost.thumb_src}/>
 				</div>
 				<div style={{ padding: 20 }}>
-					<Text></Text>
+
+					<Text>
+						{text}
+					</Text>
 				</div>
 			</div>
 			<div className="post__btns">
