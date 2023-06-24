@@ -76,8 +76,8 @@ const App = () => {
             try {
                 const response = await fetch("http://localhost:8080/api/user/1", {method: "GET"});
                 const jsonData = await response.json();
-                console.log("Got response:");
-                console.log(jsonData);
+                /*console.log("Got response:");
+                console.log(jsonData);*/
             } catch(e) {console.log(e);}
         }
 

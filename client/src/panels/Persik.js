@@ -6,13 +6,16 @@ import { Panel, PanelHeader, PanelHeaderBack } from '@vkontakte/vkui';
 import persik from '../img/persik.png';
 import './Persik.css';
 import {ROUTES} from "../routes";
-import {getUsers} from "../http/userAPI";
+import {getUsers, getIdUser} from "../http/userAPI";
 
 const Persik = ({setActiveStory, id}) => {
 	const [users, setUsers] = useState();
+	const [iduser, setIdUser] = useState();
 	useEffect(async () => {
 		async function fetchData() {
 			setUsers(await getUsers());
+			setIdUser(await getIdUser(1))
+			console.log(iduser)
 		}
 
 		await fetchData();
@@ -25,7 +28,8 @@ const Persik = ({setActiveStory, id}) => {
 				before={<PanelHeaderBack onClick={() => setActiveStory(ROUTES.PROFILE)} data-to="profile"/>}
 			>
 				Абоба
-				{JSON.stringify(users)}
+				{users?.['0'].id}
+				{(iduser?.id)}
 			</PanelHeader>
 			<img className="Persik" src={persik} alt="Persik The Cat"/>
 		</Panel>

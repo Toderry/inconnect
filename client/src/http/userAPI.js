@@ -1,4 +1,4 @@
-import jwt_decode from "jwt_decode";
+//import jwt_decode from "jwt_decode";
 import host from "./index";
 
 export const getUsers = async () => {
@@ -7,6 +7,6 @@ export const getUsers = async () => {
 }
 
 export const getIdUser = async (id) => {
-    const {data} = await host.get('api/user/' + id)
+    const {data} = await host.get(`api/user/${id}`)
     return data
 }
