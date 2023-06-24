@@ -22,7 +22,6 @@ import Icon28Newsfeed from '@vkontakte/icons/dist/28/newsfeed';
 import {NavigationBar} from "./components/NavBar";
 import {ROUTES} from "./routes";
 
-
 const App = () => {
     const [activeStory, setActiveStory] = useState(ROUTES.EVENTS);
     const [fetchedUser, setUser] = useState(null);
@@ -73,6 +72,13 @@ const App = () => {
             const user = await bridge.send('VKWebAppGetUserInfo');
             setUser(user);
             setPopout(null);
+            //Запрашивает данные пользователя по id = 1 // 24.06.2023
+            try {
+                const response = await fetch("http://localhost:8080/api/user/1", {method: "GET"});
+                const jsonData = await response.json();
+                console.log("Got response:");
+                console.log(jsonData);
+            } catch(e) {console.log(e);}
         }
 
         fetchData();
