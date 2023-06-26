@@ -28,7 +28,7 @@ const Persik = ({setActiveStory, id}) => {
 				before={<PanelHeaderBack onClick={() => setActiveStory(ROUTES.PROFILE)} data-to="profile"/>}
 			>
 				Абоба
-				{users?.['0'].id}
+				{users?.['3'].id}
 				{(iduser?.id)}
 			</PanelHeader>
 			<img className="Persik" src={persik} alt="Persik The Cat"/>

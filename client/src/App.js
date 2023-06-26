@@ -21,6 +21,7 @@ import Icon28Newsfeed from '@vkontakte/icons/dist/28/newsfeed';
 
 import {NavigationBar} from "./components/NavBar";
 import {ROUTES} from "./routes";
+import {addIdUser} from "./http/userAPI";
 
 const App = () => {
     const [activeStory, setActiveStory] = useState(ROUTES.EVENTS);
@@ -73,12 +74,14 @@ const App = () => {
             setUser(user);
             setPopout(null);
             //Запрашивает данные пользователя по id = 1 // 24.06.2023
-            try {
+
+            /*try {
                 const response = await fetch("http://localhost:8080/api/user/1", {method: "GET"});
                 const jsonData = await response.json();
-                /*console.log("Got response:");
-                console.log(jsonData);*/
-            } catch(e) {console.log(e);}
+                console.log("Got response:");
+                console.log(jsonData);
+            } catch(e) {console.log(e);}*/
+            addIdUser(user.id)
         }
 
         fetchData();

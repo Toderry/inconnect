@@ -14,7 +14,7 @@ const Profile = ({ id, setActiveStory, fetchedUser, }) => (
 
 					subtitle={fetchedUser.city && fetchedUser.city.title ? fetchedUser.city.title : ''}
 				>
-					{`Привет, ${fetchedUser.first_name} ${fetchedUser.last_name}!`}
+					{`Привет, ${fetchedUser.first_name} ${fetchedUser.id}!`}
 				</Cell>
 			</Group>}
 

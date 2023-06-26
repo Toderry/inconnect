@@ -10,3 +10,8 @@ export const getIdUser = async (id) => {
     const {data} = await host.get(`api/user/${id}`)
     return data
 }
+
+export const addIdUser = async (id) => {
+    const {data} = await host.post(`api/user`, {id})
+    return data
+}

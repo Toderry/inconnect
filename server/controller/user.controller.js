@@ -4,7 +4,8 @@ class UserController {
 
     async addId(req,res) {
         const {id} = req.body
-        const newUser = await db.query(`insert into "user" (id) values ($1) returning *`, [id])
+        const newUser = await db.query(`insert into "user" (id) values ($1) ON CONFLICT (id) DO NOTHING returning * `, [id])
+        //INSERT INTO distributors (id, dname) VALUES (5, 'Gizmo Transglobal'), (6, 'Associated Computing, Inc') ON CONFLICT (id) DO NOTHING
         // console.log(id)
         res.json(newUser.rows[0])
     }
