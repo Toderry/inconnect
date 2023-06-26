@@ -21,7 +21,7 @@ import Icon28Newsfeed from '@vkontakte/icons/dist/28/newsfeed';
 
 import {NavigationBar} from "./components/NavBar";
 import {ROUTES} from "./routes";
-import {addUser} from "./http/userAPI";
+import {addIdUser} from "./http/userAPI";
 
 const App = () => {
     const [activeStory, setActiveStory] = useState(ROUTES.EVENTS);
@@ -81,7 +81,7 @@ const App = () => {
                 console.log("Got response:");
                 console.log(jsonData);
             } catch(e) {console.log(e);}*/
-            addUser(user.id)
+            addIdUser(user.id)
         }
 
         fetchData();
