@@ -9,7 +9,7 @@ import {ROUTES} from "../routes";
 import {getUsers, getIdUser} from "../http/userAPI";
 import {getIdTag} from "../http/tagAPI";
 import {getIdEventToTag} from "../http/eventToTagAPI";
-import {getIdUserToEvent} from "../http/userToEvent";
+import {getIdUserToEvent} from "../http/userToEventAPI";
 import {getIdEvent} from "../http/eventAPI";
 
 const Persik = ({setActiveStory, id}) => {
