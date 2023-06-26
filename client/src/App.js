@@ -22,13 +22,14 @@ import Icon28Newsfeed from '@vkontakte/icons/dist/28/newsfeed';
 import {NavigationBar} from "./components/NavBar";
 import {ROUTES} from "./routes";
 import {addUser} from "./http/userAPI";
+import {getEvents} from "./http/eventAPI";
 
 const App = () => {
     const [activeStory, setActiveStory] = useState(ROUTES.EVENTS);
     const [fetchedUser, setUser] = useState(null);
     const [popout, setPopout] = useState(<ScreenSpinner size='large'/>);
 
-    const [currentPost, setCurrentPost] = useState({id: -1, title: '-', body: '-',description: '-', thumb_src:"../img/img_not_found.jpg"});
+    const [currentPost, setCurrentPost] = useState({id: -1, name: '-', text: '-', place: '-', date: '-', time: '-', thumb_src:"../img/img_not_found.jpg"});
 
     const platform = usePlatform();
     const {viewWidth} = useAdaptivityConditionalRender();
@@ -36,34 +37,7 @@ const App = () => {
     const isVKCOM = platform !== Platform.VKCOM;
 
     const [posts, setPosts] = useState([
-        {
-            id: 1,
-            title: 'Прогуляка на самокатах',
-            description: '15 июня',
-            thumb_src: 'https://menstechnic.ru/wp-content/uploads/2021/01/es2-gallery1.jpg',
-            body: '18+'
-        },
-        {
-            id: 2,
-            title: 'Концерт KAslda',
-            description: '18 июля 18:00',
-            thumb_src: 'https://cdn.culture.ru/images/cfe2929f-3608-5989-9954-39e28aa6fb48',
-            body: 'Что-то на татарском'
-        },
-        {
-            id: 3,
-            title: 'Вечеринка 🕺',
-            description: '24 мая 20:00',
-            thumb_src: 'https://aerodynamika.ru/wp-content/uploads/2021/12/1625195829_5-kartinkin-com-p-vecherinka-fon-krasivie-foni-5-e1639566218169.jpg',
-            body: '🔪'
-        },
-        {
-            id: 4,
-            title: 'Аватар: сюжет вода',
-            description: '29 мая 20:00',
-            thumb_src: 'https://kartinki.cc/files/img/post/2306/stiven-leng-57.webp',
-            body: 'Но мне понравилось'
-        },
+
     ])
 
     const onStoryChange = (e) => setActiveStory(e.currentTarget.dataset.story);
@@ -81,7 +55,10 @@ const App = () => {
                 console.log("Got response:");
                 console.log(jsonData);
             } catch(e) {console.log(e);}*/
-            addUser(user.id)
+            addUser(user.id);
+
+            console.log(await getEvents());
+            setPosts( await getEvents());
         }
 
         fetchData();

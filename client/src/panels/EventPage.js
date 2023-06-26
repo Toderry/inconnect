@@ -6,6 +6,7 @@ import {ROUTES} from "../routes";
 
 import './Events.css';
 import img from "../img/img_not_found.jpg"
+import {addUserToEvent, getIdUserToEvent, getUserToEvents} from "../http/userToEventAPI";
 
 const EventPage = (props) => {
 	const [addText, setAddText] = useState(true);
@@ -16,23 +17,23 @@ const EventPage = (props) => {
 			<PanelHeader
 				before={<PanelHeaderBack onClick={() => props.setActiveStory(ROUTES.SEARCHEVENTS)} data-to="searchevents"/>}
 			>
-				{props.currentPost.title}
+				{props.currentPost.name}
 			</PanelHeader>
 
 			<div>
 				<Title level="1" style={{ padding: 20 }}>
-					{props.currentPost.title}
+					{props.currentPost.name}
 				</Title>
 
 				<Headline level="1" style={{ padding: 20 }}>
-					{props.currentPost.body}
+					{props.currentPost.text}
 				</Headline>
 				<Headline level="1" style={{ padding: 20 }}>
-					{props.currentPost.description}
+					{props.currentPost.place}
 				</Headline>
 
 				<div className="event_img">
-				<img src={props.currentPost.thumb_src}/>
+				<img src={"https://menstechnic.ru/wp-content/uploads/2021/01/es2-gallery1.jpg"}/>
 				</div>
 				<div style={{ padding: 20 }}>
 
@@ -45,13 +46,12 @@ const EventPage = (props) => {
 				<Button stretched size="m" mode="secondary"
 					onClick={() => {
 
-						if (addText===true){
+						if (addText === true) {
 							setAddText(false)
-						}else{
+						} else {
+
 							setAddText(true)
 						}
-
-
 
 
 					}}
