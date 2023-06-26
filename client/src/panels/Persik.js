@@ -7,15 +7,18 @@ import persik from '../img/persik.png';
 import './Persik.css';
 import {ROUTES} from "../routes";
 import {getUsers, getIdUser} from "../http/userAPI";
+import {getIdTag} from "../http/tagAPI";
+
 
 const Persik = ({setActiveStory, id}) => {
 	const [users, setUsers] = useState();
-	const [iduser, setIdUser] = useState();
+	//const [iduser, setIdUser] = useState();
+	const [idtag, setIdTag] = useState();
 	useEffect(async () => {
 		async function fetchData() {
 			setUsers(await getUsers());
-			setIdUser(await getIdUser(1))
-			console.log(iduser)
+			/*setIdUser(await getIdUser(1))*/
+			setIdTag(await getIdTag(1))
 		}
 
 		await fetchData();
@@ -28,8 +31,8 @@ const Persik = ({setActiveStory, id}) => {
 				before={<PanelHeaderBack onClick={() => setActiveStory(ROUTES.PROFILE)} data-to="profile"/>}
 			>
 				Абоба
-				{users?.['3'].id}
-				{(iduser?.id)}
+				{/*users?.['1'].id*/}
+				{(idtag?.[0].name)}
 			</PanelHeader>
 			<img className="Persik" src={persik} alt="Persik The Cat"/>
 		</Panel>
