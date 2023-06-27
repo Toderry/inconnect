@@ -23,6 +23,8 @@ import {NavigationBar} from "./components/NavBar";
 import {ROUTES} from "./routes";
 import {addUser} from "./http/userAPI";
 import {getEvents} from "./http/eventAPI";
+import {addUserToEvent, getIdUserToEvent, getUserToEvents} from "./http/userToEventAPI";
+import {getEventToTags, getIdEventToTag} from "./http/eventToTagAPI";
 
 const App = () => {
     const [activeStory, setActiveStory] = useState(ROUTES.EVENTS);
@@ -37,8 +39,8 @@ const App = () => {
     const isVKCOM = platform !== Platform.VKCOM;
 
     const [posts, setPosts] = useState([
+    ]);
 
-    ])
 
     const onStoryChange = (e) => setActiveStory(e.currentTarget.dataset.story);
 
@@ -57,7 +59,7 @@ const App = () => {
             } catch(e) {console.log(e);}*/
             addUser(user.id);
 
-            console.log(await getEvents());
+            console.log(await addUserToEvent(user.id,4));
             setPosts( await getEvents());
         }
 

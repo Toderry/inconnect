@@ -20,6 +20,7 @@ import './Events.css';
 import PostItem from '../components/Postitem';
 import EventsList from '../components/EventsList';
 import {ROUTES} from "../routes";
+import {getEvents} from "../http/eventAPI";
 
 
 const albumItems = [
@@ -61,7 +62,7 @@ const albumItems = [
 	objectFit: 'cover',
   };
 
-  const AlbumItems = () => {
+  const AlbumItems = (posts) => {
 	return albumItems.map(({ id, title, description, thumb_src }) => (
 		<HorizontalCell key={id} size="l" header={title} subtitle={description}>
 		  <img style={largeImageStyles} src={thumb_src} />
@@ -69,35 +70,35 @@ const albumItems = [
 	));
   };
 
-  const Events = ({id, go, posts,setActiveStory}) => (
+  const Events = (props) => (
 	<View activePanel="horizontalCell">
 	<Panel id="horizontalCell">
 	  <PanelHeader>События</PanelHeader>
 	  <Group header={<Header aside={
-		  <Button stretched size="l" mode="secondary" onClick={() => setActiveStory(ROUTES.SEARCHEVENTS)} data-to="searchevents">
+		  <Button stretched size="l" mode="secondary" onClick={() => props.setActiveStory(ROUTES.SEARCHEVENTS)} data-to="searchevents">
 			  Показать все
 		  </Button>
 	  }>Рекомендации</Header>}>
 		<HorizontalScroll>
 		  <div style={{ display: 'flex' }}>
-			<AlbumItems />
+			<AlbumItems posts={props.currentPost} />
 		  </div>
 		</HorizontalScroll>
 	  </Group>
 	  <Group header={<Header aside={
-		  <Button stretched size="l" mode="secondary" onClick={() => setActiveStory(ROUTES.SEARCHEVENTS)} data-to="searchevents">
+		  <Button stretched size="l" mode="secondary" onClick={() => props.setActiveStory(ROUTES.SEARCHEVENTS)} data-to="searchevents">
 			  Показать все
 		  </Button>
 	  }>Лучшее</Header>}>
 		<HorizontalScroll>
 		  <div style={{ display: 'flex' }}>
-			<AlbumItems />
+			<AlbumItems posts={props.currentPost} />
 		  </div>
 		</HorizontalScroll>
 	  </Group>
 
-	</Panel>
-  </View>
+		  </Panel>
+	  </View>
   )
 
 /* 	<Panel id={id}>

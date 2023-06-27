@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import PostItem from "./Postitem";
 const EventsList = ({posts, title, setActiveStory, currentPost, setCurrentPost}) => {
+
     return(
         <div>
             <h1 style={{textAlign:'center'}}>

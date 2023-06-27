@@ -6,12 +6,20 @@ import {ROUTES} from "../routes";
 
 import './Events.css';
 import img from "../img/img_not_found.jpg"
-import {addUserToEvent, getIdUserToEvent, getUserToEvents} from "../http/userToEventAPI";
+import {addUserToEvent, getIdUserToEvent, getIdUserToIdEvent, getUserToEvents} from "../http/userToEventAPI";
+async function aboba(id1,id2){
+	const aa = await getIdUserToIdEvent(id1,id2 );
+	return aa === [];
+
+
+
+}
 
 const EventPage = (props) => {
 	const [addText, setAddText] = useState(true);
 	const buttonText = addText ? 'Подписаться' : 'Отписаться';
 	const text = addText ? '' : 'Вы подписанны';
+
 	return (
 		<Panel>
 			<PanelHeader

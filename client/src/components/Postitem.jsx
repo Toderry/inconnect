@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import MyButton from "./UI/dutton/MyButton";
 import {Button, ButtonGroup, Epic} from "@vkontakte/vkui";
 //Прорисовка блока события в ленте
 import {ROUTES} from "../routes";
@@ -8,7 +7,7 @@ const PostItem = (props) =>{
         <>
             <div className="post">
                 <div className="post__content">
-                    <strong>{props.post.id} {props.post.name}</strong>
+                    <strong>{props.post.name}</strong>
                     <div>
                         {props.post.text}
                     </div>

@@ -25,6 +25,13 @@ const Profile = ({ id, setActiveStory, fetchedUser, }) => (
 				</Button>
 			</Div>
 		</Group>
+		<Group>
+			<Div>
+				<Button stretched size="l" mode="secondary" onClick={() => setActiveStory(ROUTES.PERSIK)} data-to="persik">
+					Теги
+				</Button>
+			</Div>
+		</Group>
 
 		{/*<Group>*/}
 		{/*	<Div>*/}
