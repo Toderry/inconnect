@@ -64,14 +64,15 @@ export const NavigationBar = ({setActiveStory, activeStory, fetchedUser, posts, 
                 )
             }
         >
-            <Events id={ROUTES.EVENTS} posts={posts} go={onStoryChange} setActiveStory={setActiveStory} currentPost={currentPost}
-                    setCurrentPost={setCurrentPost}/>
-            <SearchEvents id={ROUTES.SEARCHEVENTS} posts={posts} go={onStoryChange} setActiveStory={setActiveStory} currentPost={currentPost}
-                          setCurrentPost={setCurrentPost}/>
+            <Events id={ROUTES.EVENTS} posts={posts} go={onStoryChange} setActiveStory={setActiveStory}
+                    currentPost={currentPost} setCurrentPost={setCurrentPost}/>
+            <SearchEvents id={ROUTES.SEARCHEVENTS} posts={posts} go={onStoryChange}
+                            activeStory={activeStory} setActiveStory={setActiveStory}
+                            currentPost={currentPost} setCurrentPost={setCurrentPost}/>
             <Profile id={ROUTES.PROFILE} fetchedUser={fetchedUser} setActiveStory={setActiveStory} />
             <Persik id={ROUTES.PERSIK} setActiveStory={setActiveStory} />
-            <EventPage id={ROUTES.EVENTPAGE} go={onStoryChange} setActiveStory={setActiveStory} currentPost={currentPost}
-                       setCurrentPost={setCurrentPost}/>
+            <EventPage id={ROUTES.EVENTPAGE} go={onStoryChange} activeStory={activeStory} setActiveStory={setActiveStory}
+                        currentPost={currentPost} setCurrentPost={setCurrentPost}/>
         </Epic>
     </SplitCol>
 }

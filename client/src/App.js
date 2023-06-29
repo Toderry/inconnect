@@ -38,8 +38,7 @@ const App = () => {
 
     const isVKCOM = platform !== Platform.VKCOM;
 
-    const [posts, setPosts] = useState([
-    ]);
+    const [posts, setPosts] = useState([]);
 
 
     const onStoryChange = (e) => setActiveStory(e.currentTarget.dataset.story);
@@ -59,7 +58,7 @@ const App = () => {
             } catch(e) {console.log(e);}*/
             addUser(user.id);
 
-            console.log(await addUserToEvent(user.id,4));
+            //console.log(await addUserToEvent(user.id,4));
             setPosts( await getEvents());
         }
 

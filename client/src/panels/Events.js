@@ -62,15 +62,20 @@ const albumItems = [
 	objectFit: 'cover',
   };
 
-  const AlbumItems = (posts) => {
-	return albumItems.map(({ id, title, description, thumb_src }) => (
-		<HorizontalCell key={id} size="l" header={title} subtitle={description}>
-		  <img style={largeImageStyles} src={thumb_src} />
+  const AlbumItems = ({posts,setActiveStory,setCurrentPost}) => {
+	return posts.map( (post)  => (
+		<HorizontalCell key={post.id} size="l" header={post.name} subtitle={post.text}
+		onClick={() => {setActiveStory(ROUTES.EVENTPAGE);
+						setCurrentPost(post);
+		}}
+		data-to="eventpage">
+		  <img style={largeImageStyles} src={"https://menstechnic.ru/wp-content/uploads/2021/01/es2-gallery1.jpg"} />
 	  </HorizontalCell>
 	));
   };
-
-  const Events = (props) => (
+  
+  const Events = (props) => {
+	return (
 	<View activePanel="horizontalCell">
 	<Panel id="horizontalCell">
 	  <PanelHeader>События</PanelHeader>
@@ -81,7 +86,8 @@ const albumItems = [
 	  }>Рекомендации</Header>}>
 		<HorizontalScroll>
 		  <div style={{ display: 'flex' }}>
-			<AlbumItems posts={props.currentPost} />
+			<AlbumItems posts={props.posts} setActiveStory = {props.setActiveStory}
+						setCurrentPost = {props.setCurrentPost}/>
 		  </div>
 		</HorizontalScroll>
 	  </Group>
@@ -92,15 +98,16 @@ const albumItems = [
 	  }>Лучшее</Header>}>
 		<HorizontalScroll>
 		  <div style={{ display: 'flex' }}>
-			<AlbumItems posts={props.currentPost} />
+			<AlbumItems posts={props.posts} setActiveStory = {props.setActiveStory}
+						setCurrentPost = {props.setCurrentPost}/>
 		  </div>
 		</HorizontalScroll>
 	  </Group>
 
 		  </Panel>
 	  </View>
-  )
-
+  );
+}
 /* 	<Panel id={id}>
 		<PanelHeader
 			//before={<PanelHeaderBack onClick={go} data-to="home"/>}
