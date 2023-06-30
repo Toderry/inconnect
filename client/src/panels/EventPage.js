@@ -19,11 +19,12 @@ const EventPage = (props) => {
 	const [addText, setAddText] = useState(true);
 	const buttonText = addText ? 'Подписаться' : 'Отписаться';
 	const text = addText ? '' : 'Вы подписанны';
-
+	console.log(`prev. page: ${props.previousPage}`)
+	//ROUTES.SEARCHEVENTS
 	return (
 		<Panel>
 			<PanelHeader
-				before={<PanelHeaderBack onClick={() => props.setActiveStory(ROUTES.SEARCHEVENTS)} data-to="searchevents"/>}
+				before={<PanelHeaderBack onClick={() => props.setActiveStory(props.previousPage)} data-to={props.previousPage}/>}
 			>
 				{props.currentPost.name}
 			</PanelHeader>

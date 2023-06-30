@@ -12,7 +12,8 @@ import Icon28User_circle_outline from '@vkontakte/icons/dist/28/user_circle_outl
 import {ROUTES} from "../routes";
 import {Icon28Newsfeed} from "@vkontakte/icons";
 
-export const NavigationBar = ({setActiveStory, activeStory, fetchedUser, posts, currentPost, setCurrentPost}) => {
+export const NavigationBar = ({setActiveStory, activeStory, fetchedUser, posts, currentPost, setCurrentPost,
+    previousPage, setPreviousPage}) => {
     const { viewWidth } = useAdaptivityConditionalRender();
     const onStoryChange = (e) => setActiveStory(e.currentTarget.dataset.story);
 
@@ -65,14 +66,17 @@ export const NavigationBar = ({setActiveStory, activeStory, fetchedUser, posts, 
             }
         >
             <Events id={ROUTES.EVENTS} posts={posts} go={onStoryChange} setActiveStory={setActiveStory}
-                    currentPost={currentPost} setCurrentPost={setCurrentPost}/>
+                    currentPost={currentPost} setCurrentPost={setCurrentPost}
+                    previousPage = {previousPage} setPreviousPage = {setPreviousPage}/>
             <SearchEvents id={ROUTES.SEARCHEVENTS} posts={posts} go={onStoryChange}
                             activeStory={activeStory} setActiveStory={setActiveStory}
-                            currentPost={currentPost} setCurrentPost={setCurrentPost}/>
+                            currentPost={currentPost} setCurrentPost={setCurrentPost}
+                            previousPage = {previousPage} setPreviousPage = {setPreviousPage}/>
             <Profile id={ROUTES.PROFILE} fetchedUser={fetchedUser} setActiveStory={setActiveStory} />
             <Persik id={ROUTES.PERSIK} setActiveStory={setActiveStory} />
             <EventPage id={ROUTES.EVENTPAGE} go={onStoryChange} activeStory={activeStory} setActiveStory={setActiveStory}
-                        currentPost={currentPost} setCurrentPost={setCurrentPost}/>
+                        currentPost={currentPost} setCurrentPost={setCurrentPost}
+                        previousPage = {previousPage} setPreviousPage = {setPreviousPage}/>
         </Epic>
     </SplitCol>
 }

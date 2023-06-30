@@ -62,7 +62,7 @@ const albumItems = [
 	objectFit: 'cover',
   };
 
-  const AlbumItems = ({posts,setActiveStory,setCurrentPost}) => {
+  const AlbumItems = ({posts,setActiveStory,setCurrentPost,previousPage,setPreviousPage}) => {
 	return posts.map( (post)  => (
 		<HorizontalCell key={post.id} size="l" header={post.name} subtitle={post.text}
 		onClick={() => {setActiveStory(ROUTES.EVENTPAGE);
@@ -75,6 +75,7 @@ const albumItems = [
   };
   
   const Events = (props) => {
+	props.setPreviousPage("events")
 	return (
 	<View activePanel="horizontalCell">
 	<Panel id="horizontalCell">
@@ -87,7 +88,8 @@ const albumItems = [
 		<HorizontalScroll>
 		  <div style={{ display: 'flex' }}>
 			<AlbumItems posts={props.posts} setActiveStory = {props.setActiveStory}
-						setCurrentPost = {props.setCurrentPost}/>
+						setCurrentPost = {props.setCurrentPost}
+						previousPage = {props.previousPage} setPreviousPage = {props.setPreviousPage}/>
 		  </div>
 		</HorizontalScroll>
 	  </Group>
@@ -99,7 +101,8 @@ const albumItems = [
 		<HorizontalScroll>
 		  <div style={{ display: 'flex' }}>
 			<AlbumItems posts={props.posts} setActiveStory = {props.setActiveStory}
-						setCurrentPost = {props.setCurrentPost}/>
+						setCurrentPost = {props.setCurrentPost}
+						previousPage = {props.previousPage} setPreviousPage = {props.setPreviousPage}/>
 		  </div>
 		</HorizontalScroll>
 	  </Group>

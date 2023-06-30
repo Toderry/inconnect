@@ -7,7 +7,10 @@ import './SearchEvents.css';
 import EventsList from '../components/EventsList';
 
 
-const SearchEvents = ({id, go, posts, setActiveStory, currentPost, setCurrentPost}) => (
+const SearchEvents = ({id, go, posts, setActiveStory, currentPost, setCurrentPost,
+	previousPage, setPreviousPage}) => {
+	setPreviousPage("searchevents");
+	return (
 	<Panel id={id}>
 		<PanelHeader
 			//before={<PanelHeaderBack onClick={go} data-to="home"/>}
@@ -16,12 +19,12 @@ const SearchEvents = ({id, go, posts, setActiveStory, currentPost, setCurrentPos
 		</PanelHeader>
 		<div className="SearchEvents">
 			<EventsList posts = {posts} title={'Актуальные события'} setActiveStory={setActiveStory} currentPost={currentPost}
-			setCurrentPost={setCurrentPost}/>
+			setCurrentPost={setCurrentPost} previousPage = {previousPage} setPreviousPage = {setPreviousPage}/>
         </div>
 
 	</Panel>
 );
-
+};
 SearchEvents.propTypes = {
 	id: PropTypes.string.isRequired,
 	go: PropTypes.func.isRequired,

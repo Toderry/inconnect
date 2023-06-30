@@ -32,6 +32,7 @@ const App = () => {
     const [popout, setPopout] = useState(<ScreenSpinner size='large'/>);
 
     const [currentPost, setCurrentPost] = useState({id: -1, name: '-', text: '-', place: '-', date: '-', time: '-', thumb_src:"../img/img_not_found.jpg"});
+    const [previousPage, setPreviousPage] = useState(ROUTES.EVENTS);
 
     const platform = usePlatform();
     const {viewWidth} = useAdaptivityConditionalRender();
@@ -147,6 +148,7 @@ const App = () => {
                         <NavigationBar setActiveStory={setActiveStory} activeStory={activeStory}
                                        posts={posts} fetchedUser={fetchedUser}
                                        currentPost={currentPost} setCurrentPost={setCurrentPost}
+                                       previousPage = {previousPage} setPreviousPage = {setPreviousPage}
                         />
                     </SplitLayout>
                 </AppRoot>

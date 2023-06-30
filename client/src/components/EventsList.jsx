@@ -1,14 +1,16 @@
 import React, {useState} from "react";
 import PostItem from "./Postitem";
-const EventsList = ({posts, title, setActiveStory, currentPost, setCurrentPost}) => {
+//posts, title, setActiveStory, currentPost, setCurrentPost
+const EventsList = (props) => {
     return(
         <div>
             <h1 style={{textAlign:'center'}}>
-				{title}
+				{props.title}
 			</h1>
-            {posts.map((post) =>
-                <PostItem post={post} key={post.id} setActiveStory={setActiveStory} currentPost={currentPost}
-                          setCurrentPost={setCurrentPost}/>
+            {props.posts.map((post) =>
+                <PostItem post={post} key={post.id} setActiveStory={props.setActiveStory}
+                        currentPost={props.currentPost} setCurrentPost={props.setCurrentPost}
+                        previousPage = {props.previousPage} setPreviousPage = {props.setPreviousPage}/>
             )}
 
         </div>
