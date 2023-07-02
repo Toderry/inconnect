@@ -75,7 +75,7 @@ export const NavigationBar = ({setActiveStory, activeStory, fetchedUser, posts, 
             <Profile id={ROUTES.PROFILE} fetchedUser={fetchedUser} setActiveStory={setActiveStory} />
             <Persik id={ROUTES.PERSIK} setActiveStory={setActiveStory} />
             <EventPage id={ROUTES.EVENTPAGE} go={onStoryChange} activeStory={activeStory} setActiveStory={setActiveStory}
-                        currentPost={currentPost} setCurrentPost={setCurrentPost}
+                        currentPost={currentPost} setCurrentPost={setCurrentPost} fetchedUser={fetchedUser}
                         previousPage = {previousPage} setPreviousPage = {setPreviousPage}/>
         </Epic>
     </SplitCol>

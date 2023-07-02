@@ -1,25 +1,57 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
 
 import {Panel, PanelHeader, PanelHeaderBack, Headline, Title, Text, ButtonGroup, Button} from '@vkontakte/vkui';
 import {ROUTES} from "../routes";
 
 import './Events.css';
-import img from "../img/img_not_found.jpg"
-import {addUserToEvent, getIdUserToEvent, getIdUserToIdEvent, getUserToEvents} from "../http/userToEventAPI";
-async function aboba(id1,id2){
-	const aa = await getIdUserToIdEvent(id1,id2 );
-	return aa === [];
+//import img from "../img/img_not_found.jpg"
+import {
+	addUserToEvent,
+	deleteIdUserToEvent,
+	getIdUserToEvent,
+	getIdUserToIdEvent,
+	getUserToEvents
+} from "../http/userToEventAPI";
+import {getUsers} from "../http/userAPI";
+import {getIdTag, getTags, putIdTag} from "../http/tagAPI";
+import {getIdEventToIdTag, getIdEventToTag, getPictureByEventId} from "../http/eventToTagAPI";
+import {getIdEvent} from "../http/eventAPI";
 
 
-
-}
 
 const EventPage = (props) => {
-	const [addText, setAddText] = useState(true);
-	const buttonText = addText ? 'Подписаться' : 'Отписаться';
-	const text = addText ? '' : 'Вы подписанны';
-	console.log(`prev. page: ${props.previousPage}`)
+	const [addText, setAddText] = useState(false);
+	const buttonText = addText ? 'Отписаться' : 'Подписаться';
+	const text = addText ? 'Вы подписанны' : '';
+	const [Url, setUrl] = useState('');
+
+
+	useEffect(async () => {
+		async function fetchData() {
+
+
+
+			setUrl((await getPictureByEventId(props.currentPost.id)).picture_url)
+
+
+
+			const idUserEvent = await getIdUserToIdEvent(props.fetchedUser.id, props.currentPost.id)//получаем связи
+			console.log(idUserEvent?.id)
+			if (idUserEvent?.id){
+				setAddText(true)//проверка на пустату
+			}
+
+
+
+
+
+		}
+
+		await fetchData();
+	}, []);
+
+	//console.log(`prev. page: ${props.previousPage}`)
 	//ROUTES.SEARCHEVENTS
 	return (
 		<Panel>
@@ -42,7 +74,7 @@ const EventPage = (props) => {
 				</Headline>
 
 				<div className="event_img">
-				<img src={"https://menstechnic.ru/wp-content/uploads/2021/01/es2-gallery1.jpg"}/>
+				<img src={Url}/>
 				</div>
 				<div style={{ padding: 20 }}>
 
@@ -53,13 +85,19 @@ const EventPage = (props) => {
 			</div>
 			<div className="post__btns">
 				<Button stretched size="m" mode="secondary"
-					onClick={() => {
+					onClick={async () => {
+						//console.log(`${addUserToEvent(1,1)}`)
 
 						if (addText === true) {
-							setAddText(false)
+							setAddText(false);
+							const idUserEvent = await getIdUserToIdEvent(props.fetchedUser.id,props.currentPost.id)
+							deleteIdUserToEvent(idUserEvent.id)
+
+
 						} else {
 
 							setAddText(true)
+							await addUserToEvent(props.fetchedUser.id,props.currentPost.id)//добавляем связь
 						}
 
 

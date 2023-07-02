@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -21,38 +21,10 @@ import PostItem from '../components/Postitem';
 import EventsList from '../components/EventsList';
 import {ROUTES} from "../routes";
 import {getEvents} from "../http/eventAPI";
+import {getIdTag} from "../http/tagAPI";
+import {getPictureByEventId} from "../http/eventToTagAPI";
 
 
-const albumItems = [
-	{
-		id: 1,
-		title: 'Прогуляка на самокатах',
-		description: '15 июня',
-		thumb_src: 'https://menstechnic.ru/wp-content/uploads/2021/01/es2-gallery1.jpg',
-		body: '18+'
-	},
-	{
-		id: 2,
-		title: 'Концерт KAslda',
-		description: '18 июля 18:00',
-		thumb_src: 'https://cdn.culture.ru/images/cfe2929f-3608-5989-9954-39e28aa6fb48',
-		body: '18+'
-	},
-	{
-		id: 3,
-		title: 'Вечеринка 🕺',
-		description: '24 мая 20:00',
-		thumb_src: 'https://aerodynamika.ru/wp-content/uploads/2021/12/1625195829_5-kartinkin-com-p-vecherinka-fon-krasivie-foni-5-e1639566218169.jpg',
-		body: '🔪'
-	},
-	{
-		id: 4,
-		title: 'Аватар: сюжет вода',
-		description: '29 мая 20:00',
-		thumb_src: 'https://kartinki.cc/files/img/post/2306/stiven-leng-57.webp',
-		body: 'Но мне понравилось'
-	},
-  ];
   const largeImageStyles = {
 	width: 220,
 	height: 124,
@@ -63,18 +35,33 @@ const albumItems = [
   };
 
   const AlbumItems = ({posts,setActiveStory,setCurrentPost,previousPage,setPreviousPage}) => {
+	  const [Url, setUrl] = useState('');
+
+
+	  useEffect(async () => {
+		  async function fetchData() {
+			  posts.map( async (post) => (
+				  post.url=(await getPictureByEventId(post.id)).picture_url
+
+				  //setUrl((await getPictureByEventId(post.id)).picture_url);
+			  ));
+
+		  }
+		  await fetchData();
+	  }, []);
 	return posts.map( (post)  => (
 		<HorizontalCell key={post.id} size="l" header={post.name} subtitle={post.text}
 		onClick={() => {setActiveStory(ROUTES.EVENTPAGE);
 						setCurrentPost(post);
 		}}
 		data-to="eventpage">
-		  <img style={largeImageStyles} src={"https://menstechnic.ru/wp-content/uploads/2021/01/es2-gallery1.jpg"} />
+		  <img style={largeImageStyles} src={post.url} />
 	  </HorizontalCell>
 	));
   };
-  
+
   const Events = (props) => {
+
 	props.setPreviousPage("events")
 	return (
 	<View activePanel="horizontalCell">

@@ -61,7 +61,6 @@ const App = () => {
             } catch(e) {console.log(e);}*/
             addUser(user.id);
 
-            console.log(await addUserToEvent(user.id,4));
             setPosts( await getEvents());
             setTagId(await getTagIdByEventId(1));
             setPicture(await getPictureByEventId(1));
