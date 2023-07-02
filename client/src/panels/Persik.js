@@ -9,8 +9,9 @@ import {ROUTES} from "../routes";
 import {getUsers, getIdUser} from "../http/userAPI";
 import {getIdTag} from "../http/tagAPI";
 import {getIdEventToTag} from "../http/eventToTagAPI";
-import {getIdUserToEvent} from "../http/userToEventAPI";
+import {getIdUserToEvent, getIdUserToIdEvent} from "../http/userToEventAPI";
 import {getIdEvent} from "../http/eventAPI";
+
 
 const Persik = ({setActiveStory, id}) => {
 	const [users, setUsers] = useState();
@@ -20,6 +21,7 @@ const Persik = ({setActiveStory, id}) => {
 
 	const [idETT, setIdETT] = useState();
 	const [idUserToEvent, setIdUserToEvent] = useState();
+	const [idUidE, setIdUidE] = useState();
 	useEffect(async () => {
 		async function fetchData() {
 			setUsers(await getUsers());
@@ -29,9 +31,11 @@ const Persik = ({setActiveStory, id}) => {
 
 			setIdETT(await getIdEventToTag(1))
 
-			const eventTo = await getIdUserToEvent(1)
+			const eventTo = await getIdUserToEvent(82)
 			setIdUserToEvent(eventTo)
-			setIdEvent(await getIdEvent(eventTo[0].event_id))
+			setIdEvent(await getIdEvent(eventTo[0]?.event_id))
+
+			setIdUidE(await getIdUserToIdEvent(140129939,5))
 		}
 
 		await fetchData();
@@ -48,8 +52,8 @@ const Persik = ({setActiveStory, id}) => {
 				{/*(idtag?.[0].name)*/}
 				{/*idETT?.[0].event_id*/}
 				{/*idETT?.[0].tag_id*/}
-				{idEvent?.name}
-				{}
+				{/*idEvent?.name*/}
+				{idUidE?.id}
 			</PanelHeader>
 			<img className="Persik" src={persik} alt="Persik The Cat"/>
 		</Panel>

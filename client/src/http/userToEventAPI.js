@@ -11,12 +11,12 @@ export const getUserToEvents = async () => {
 }
 
 export const getIdUserToEvent = async (id) => {
-    const {data} = await host.get(`api/userEvent/${id}`)
+    const {data} = await host.get(`api/userEvent/id/${id}`)
     return data
 }
 
 export const getIdUserToIdEvent = async (uid, eid) => {
-    const {data} = await host.get(`api/userEvent/IdId`, {"user_id": uid, "event_id": eid})
+    const {data} = await host.post(`api/userEvent/IdId`,{"user_id": uid, "event_id": eid})
     return data
 }
 

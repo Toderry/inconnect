@@ -22,8 +22,11 @@ class userToEventController {
     }
     async getIdUserToIdEvent(req,res) {
         const {user_id, event_id} = req.body
+        //const user_id = req.params.id
+        //const event_id = req.params.id
         const userToEvent = await db.query(`select * from "user_to_event" where user_id = $1 and event_id = $2`, [user_id, event_id])
-        res.json(userToEvent.rows)
+        res.json(userToEvent.rows[0])
+        console.log(JSON.stringify(userToEvent.rows))
     }
 
     async deleteIdUserToEvent(req,res) {

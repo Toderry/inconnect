@@ -7,8 +7,8 @@ router.post('/userEvent', userEventController.addUserToEvent)
 
 
 router.get('/userEvent', userEventController.getAllUserToEvent)
-router.get('/userEvent/:id', userEventController.getIdUserToEvent)
-router.get('/userEvent/IdId', userEventController.getIdUserToIdEvent)
+router.get('/userEvent/id/:id', userEventController.getIdUserToEvent)
+router.post('/userEvent/IdId', userEventController.getIdUserToIdEvent)
 
 
 router.delete('/userEvent/:id', userEventController.deleteIdUserToEvent)
