@@ -18,6 +18,14 @@ export const getIdEventToIdTag = async (eid, tid) => {
     const {data} = await host.get(`api/eventTag/IdId`, {"event_id": eid, "tag_id":tid})
     return data
 }
+export const getPictureByEventId = async (eid) => {
+    const {data} = await host.get(`api/eventTag/picture/${eid}`)
+    return data
+}
+export const getTagIdByEventId = async (eid) => {
+    const {data} = await host.get(`api/eventTag/tagId/${eid}`)
+    return data
+}
 
 export const deleteIdEventToTag = async (id) => {
     const {data} = await host.delete(`api/eventTag/${id}`)

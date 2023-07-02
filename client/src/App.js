@@ -23,8 +23,8 @@ import {NavigationBar} from "./components/NavBar";
 import {ROUTES} from "./routes";
 import {addUser} from "./http/userAPI";
 import {getEvents} from "./http/eventAPI";
-import {addUserToEvent, getIdUserToEvent, getUserToEvents} from "./http/userToEventAPI";
-import {getEventToTags, getIdEventToTag} from "./http/eventToTagAPI";
+import {addUserToEvent, getIdUserToEvent, getIdUserToIdEvent, getUserToEvents} from "./http/userToEventAPI";
+import {getEventToTags, getIdEventToTag, getPictureByEventId, getTagIdByEventId} from "./http/eventToTagAPI";
 
 const App = () => {
     const [activeStory, setActiveStory] = useState(ROUTES.EVENTS);
@@ -40,6 +40,8 @@ const App = () => {
     const isVKCOM = platform !== Platform.VKCOM;
 
     const [posts, setPosts] = useState([]);
+    const[tagId, setTagId] = useState(null);
+    const[picture, setPicture] = useState(null);
 
 
     const onStoryChange = (e) => setActiveStory(e.currentTarget.dataset.story);
@@ -59,8 +61,14 @@ const App = () => {
             } catch(e) {console.log(e);}*/
             addUser(user.id);
 
-            //console.log(await addUserToEvent(user.id,4));
+            console.log(await addUserToEvent(user.id,4));
             setPosts( await getEvents());
+            setTagId(await getTagIdByEventId(1));
+            setPicture(await getPictureByEventId(1));
+            const pic = await getPictureByEventId(1);
+            console.log(`tag id = ${tagId.tag_id}`);
+            console.log(`picture url = ${picture.picture_url}`);
+
         }
 
         fetchData();
