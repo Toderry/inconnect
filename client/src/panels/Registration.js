@@ -1,12 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import {View, Panel, Group, PanelHeader, FormItem, FormLayout, Input, PanelHeaderBack, CellButton, FormLayoutGroup, SegmentedControl, Select, Textarea, Checkbox} from '@vkontakte/vkui';
+import React from 'react';
+import {
+    Button,
+    CellButton,
+    Checkbox,
+    FormItem,
+    FormLayout,
+    FormLayoutGroup,
+    Group,
+    Input,
+    Link,
+    Panel,
+    PanelHeader,
+    PanelHeaderBack,
+    SegmentedControl,
+    Select,
+    Textarea
+} from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
-import {Link, Button} from '@vkontakte/vkui';
 
 const addressItems = [
-    { label: 'Почтовый индекс', name: 'zip' },
-    { label: 'Страна', name: 'country' },
-    { label: 'Город', name: 'city' },
+    {label: 'Почтовый индекс', name: 'zip'},
+    {label: 'Страна', name: 'country'},
+    {label: 'Город', name: 'city'},
 ];
 
 const Registration = ({id, go}) => {
@@ -15,7 +30,7 @@ const Registration = ({id, go}) => {
     const [showPatronymic, setShowPatronymic] = React.useState(true);
 
     const onChange = (e) => {
-        const { name, value } = e.currentTarget;
+        const {name, value} = e.currentTarget;
 
         const setStateAction = {
             email: setEmail,
@@ -46,23 +61,23 @@ const Registration = ({id, go}) => {
                             email ? 'Электронная почта введена верно!' : 'Пожалуйста, введите электронную почту'
                         }
                     >
-                        <Input id="email" type="email" name="email" value={email} onChange={onChange} />
+                        <Input id="email" type="email" name="email" value={email} onChange={onChange}/>
                     </FormItem>
 
                     <FormItem top="Пароль" htmlFor="pass">
-                        <Input id="pass" type="password" placeholder="Введите пароль" />
+                        <Input id="pass" type="password" placeholder="Введите пароль"/>
                     </FormItem>
 
                     <FormItem bottom="Пароль может содержать только латинские буквы и цифры.">
-                        <Input type="password" placeholder="Повторите пароль" />
+                        <Input type="password" placeholder="Повторите пароль"/>
                     </FormItem>
 
                     <FormLayoutGroup mode="horizontal">
                         <FormItem htmlFor="name" top="Имя">
-                            <Input id="name" />
+                            <Input id="name"/>
                         </FormItem>
                         <FormItem htmlFor="lastname" top="Фамилия">
-                            <Input id="lastname" />
+                            <Input id="lastname"/>
                         </FormItem>
                     </FormLayoutGroup>
 
@@ -76,7 +91,7 @@ const Registration = ({id, go}) => {
                             top="Отчество"
                             bottom="Если у вас нет отчества — удалите этот пункт."
                         >
-                            <Input id="patronymic" />
+                            <Input id="patronymic"/>
                         </FormItem>
                     )}
 
@@ -113,9 +128,9 @@ const Registration = ({id, go}) => {
                         />
                     </FormItem>
 
-                    {addressItems.map(({ label, name }) => (
+                    {addressItems.map(({label, name}) => (
                         <FormItem htmlFor={label} top={label} key={name}>
-                            <Input id={label} name={name} />
+                            <Input id={label} name={name}/>
                         </FormItem>
                     ))}
                     <FormItem
@@ -145,7 +160,7 @@ const Registration = ({id, go}) => {
                         />
                     </FormItem>
                     <FormItem htmlFor="about" top="О себе">
-                        <Textarea id="about" />
+                        <Textarea id="about"/>
                     </FormItem>
                     <Checkbox>
                         Согласен со всем <Link>этим</Link>

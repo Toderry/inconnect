@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-//import React from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import {
     AdaptivityProvider,
@@ -7,7 +6,6 @@ import {
     Cell,
     ConfigProvider,
     Group,
-    Panel,
     PanelHeader,
     Platform,
     ScreenSpinner,
@@ -23,15 +21,22 @@ import {NavigationBar} from "./components/NavBar";
 import {ROUTES} from "./routes";
 import {addUser} from "./http/userAPI";
 import {getEvents} from "./http/eventAPI";
-import {addUserToEvent, getIdUserToEvent, getIdUserToIdEvent, getUserToEvents} from "./http/userToEventAPI";
-import {getEventToTags, getIdEventToTag, getPictureByEventId, getTagIdByEventId} from "./http/eventToTagAPI";
+import {getPictureByEventId, getTagIdByEventId} from "./http/eventToTagAPI";
 
 const App = () => {
     const [activeStory, setActiveStory] = useState(ROUTES.EVENTS);
     const [fetchedUser, setUser] = useState(null);
     const [popout, setPopout] = useState(<ScreenSpinner size='large'/>);
 
-    const [currentPost, setCurrentPost] = useState({id: -1, name: '-', text: '-', place: '-', date: '-', time: '-', thumb_src:"../img/img_not_found.jpg"});
+    const [currentPost, setCurrentPost] = useState({
+        id: -1,
+        name: '-',
+        text: '-',
+        place: '-',
+        date: '-',
+        time: '-',
+        thumb_src: "../img/img_not_found.jpg"
+    });
     const [previousPage, setPreviousPage] = useState(ROUTES.EVENTS);
 
     const platform = usePlatform();
@@ -40,8 +45,8 @@ const App = () => {
     const isVKCOM = platform !== Platform.VKCOM;
 
     const [posts, setPosts] = useState([]);
-    const[tagId, setTagId] = useState(null);
-    const[picture, setPicture] = useState(null);
+    const [tagId, setTagId] = useState(null);
+    const [picture, setPicture] = useState(null);
 
 
     const onStoryChange = (e) => setActiveStory(e.currentTarget.dataset.story);
@@ -61,7 +66,7 @@ const App = () => {
             } catch(e) {console.log(e);}*/
             addUser(user.id);
 
-            setPosts( await getEvents());
+            setPosts(await getEvents());
             setTagId(await getTagIdByEventId(1));
             setPicture(await getPictureByEventId(1));
             const pic = await getPictureByEventId(1);
@@ -83,79 +88,79 @@ const App = () => {
                         style={{justifyContent: 'center'}}>
                         {viewWidth.tabletPlus && (
                             <SplitCol className={viewWidth.tabletPlus.className} fixed width={280} maxWidth={280}>
-                                    {isVKCOM && <PanelHeader/>}
-                                    <Group>
-                                        <Cell
-                                            disabled={activeStory === 'feed'}
-                                            style={
-                                                activeStory === 'feed'
-                                                    ? {
-                                                        backgroundColor: 'var(--vkui--color_background_secondary)',
-                                                        borderRadius: 8,
-                                                    }
-                                                    : {}
-                                            }
-                                            data-story="feed"
-                                            onClick={onStoryChange}
-                                            before={<Icon28Newsfeed/>}
-                                        >
-                                            feed
-                                        </Cell>
-                                        <Cell
-                                            disabled={activeStory === 'profile'}
-                                            style={
-                                                activeStory === 'profile'
-                                                    ? {
-                                                        backgroundColor: 'var(--vkui--color_background_secondary)',
-                                                        borderRadius: 8,
-                                                    }
-                                                    : {}
-                                            }
-                                            data-story="profile"
-                                            onClick={onStoryChange}
-                                            before={<Icon28Newsfeed/>}
-                                        >
-                                            profile
-                                        </Cell>
-                                        <Cell
-                                            disabled={activeStory === 'services'}
-                                            style={
-                                                activeStory === 'services'
-                                                    ? {
-                                                        backgroundColor: 'var(--vkui--color_background_secondary)',
-                                                        borderRadius: 8,
-                                                    }
-                                                    : {}
-                                            }
-                                            data-story="services"
-                                            onClick={onStoryChange}
-                                            before={<Icon28Newsfeed/>}
-                                        >
-                                            services
-                                        </Cell>
-                                        <Cell
-                                            disabled={activeStory === 'messages'}
-                                            style={
-                                                activeStory === 'messages'
-                                                    ? {
-                                                        backgroundColor: 'var(--vkui--color_background_secondary)',
-                                                        borderRadius: 8,
-                                                    }
-                                                    : {}
-                                            }
-                                            data-story="messages"
-                                            onClick={onStoryChange}
-                                            before={<Icon28Newsfeed/>}
-                                        >
-                                            messages
-                                        </Cell>
-                                    </Group>
+                                {isVKCOM && <PanelHeader/>}
+                                <Group>
+                                    <Cell
+                                        disabled={activeStory === 'feed'}
+                                        style={
+                                            activeStory === 'feed'
+                                                ? {
+                                                    backgroundColor: 'var(--vkui--color_background_secondary)',
+                                                    borderRadius: 8,
+                                                }
+                                                : {}
+                                        }
+                                        data-story="feed"
+                                        onClick={onStoryChange}
+                                        before={<Icon28Newsfeed/>}
+                                    >
+                                        feed
+                                    </Cell>
+                                    <Cell
+                                        disabled={activeStory === 'profile'}
+                                        style={
+                                            activeStory === 'profile'
+                                                ? {
+                                                    backgroundColor: 'var(--vkui--color_background_secondary)',
+                                                    borderRadius: 8,
+                                                }
+                                                : {}
+                                        }
+                                        data-story="profile"
+                                        onClick={onStoryChange}
+                                        before={<Icon28Newsfeed/>}
+                                    >
+                                        profile
+                                    </Cell>
+                                    <Cell
+                                        disabled={activeStory === 'services'}
+                                        style={
+                                            activeStory === 'services'
+                                                ? {
+                                                    backgroundColor: 'var(--vkui--color_background_secondary)',
+                                                    borderRadius: 8,
+                                                }
+                                                : {}
+                                        }
+                                        data-story="services"
+                                        onClick={onStoryChange}
+                                        before={<Icon28Newsfeed/>}
+                                    >
+                                        services
+                                    </Cell>
+                                    <Cell
+                                        disabled={activeStory === 'messages'}
+                                        style={
+                                            activeStory === 'messages'
+                                                ? {
+                                                    backgroundColor: 'var(--vkui--color_background_secondary)',
+                                                    borderRadius: 8,
+                                                }
+                                                : {}
+                                        }
+                                        data-story="messages"
+                                        onClick={onStoryChange}
+                                        before={<Icon28Newsfeed/>}
+                                    >
+                                        messages
+                                    </Cell>
+                                </Group>
                             </SplitCol>
                         )}
                         <NavigationBar setActiveStory={setActiveStory} activeStory={activeStory}
                                        posts={posts} fetchedUser={fetchedUser}
                                        currentPost={currentPost} setCurrentPost={setCurrentPost}
-                                       previousPage = {previousPage} setPreviousPage = {setPreviousPage}
+                                       previousPage={previousPage} setPreviousPage={setPreviousPage}
                         />
                     </SplitLayout>
                 </AppRoot>

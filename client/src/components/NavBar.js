@@ -12,9 +12,11 @@ import Icon28User_circle_outline from '@vkontakte/icons/dist/28/user_circle_outl
 import {ROUTES} from "../routes";
 import {Icon28Newsfeed} from "@vkontakte/icons";
 
-export const NavigationBar = ({setActiveStory, activeStory, fetchedUser, posts, currentPost, setCurrentPost,
-    previousPage, setPreviousPage}) => {
-    const { viewWidth } = useAdaptivityConditionalRender();
+export const NavigationBar = ({
+                                  setActiveStory, activeStory, fetchedUser, posts, currentPost, setCurrentPost,
+                                  previousPage, setPreviousPage
+                              }) => {
+    const {viewWidth} = useAdaptivityConditionalRender();
     const onStoryChange = (e) => setActiveStory(e.currentTarget.dataset.story);
 
     return <SplitCol width="100%" maxWidth="560px" stretchedOnMobile autoSpaced>
@@ -29,7 +31,7 @@ export const NavigationBar = ({setActiveStory, activeStory, fetchedUser, posts, 
                             data-story="events"
                             text="Главная"
                         >
-                            <Icon28Newsfeed />
+                            <Icon28Newsfeed/>
                         </TabbarItem>
                         <TabbarItem
                             onClick={() => setActiveStory('searchevents')}
@@ -37,7 +39,7 @@ export const NavigationBar = ({setActiveStory, activeStory, fetchedUser, posts, 
                             data-story="searchevents"
                             text="Поиск"
                         >
-                            <Icon28Search />
+                            <Icon28Search/>
                         </TabbarItem>
                         <TabbarItem
                             onClick={onStoryChange}
@@ -50,16 +52,16 @@ export const NavigationBar = ({setActiveStory, activeStory, fetchedUser, posts, 
                             }
                             text="Сообщения"
                         >
-                            <Icon28Message_outline />
+                            <Icon28Message_outline/>
                         </TabbarItem>
                         <TabbarItem
                             onClick={() => setActiveStory('profile')}
                             selected={activeStory === 'profile'}
                             data-story="profile"
-                            indicator={<Badge mode="prominent" />}
+                            indicator={<Badge mode="prominent"/>}
                             text="Профиль"
                         >
-                            <Icon28User_circle_outline />
+                            <Icon28User_circle_outline/>
                         </TabbarItem>
                     </Tabbar>
                 )
@@ -67,16 +69,17 @@ export const NavigationBar = ({setActiveStory, activeStory, fetchedUser, posts, 
         >
             <Events id={ROUTES.EVENTS} posts={posts} go={onStoryChange} setActiveStory={setActiveStory}
                     currentPost={currentPost} setCurrentPost={setCurrentPost}
-                    previousPage = {previousPage} setPreviousPage = {setPreviousPage}/>
+                    previousPage={previousPage} setPreviousPage={setPreviousPage}/>
             <SearchEvents id={ROUTES.SEARCHEVENTS} posts={posts} go={onStoryChange}
-                            activeStory={activeStory} setActiveStory={setActiveStory}
-                            currentPost={currentPost} setCurrentPost={setCurrentPost}
-                            previousPage = {previousPage} setPreviousPage = {setPreviousPage}/>
-            <Profile id={ROUTES.PROFILE} fetchedUser={fetchedUser} setActiveStory={setActiveStory} />
-            <Persik id={ROUTES.PERSIK} setActiveStory={setActiveStory} />
-            <EventPage id={ROUTES.EVENTPAGE} go={onStoryChange} activeStory={activeStory} setActiveStory={setActiveStory}
-                        currentPost={currentPost} setCurrentPost={setCurrentPost} fetchedUser={fetchedUser}
-                        previousPage = {previousPage} setPreviousPage = {setPreviousPage}/>
+                          activeStory={activeStory} setActiveStory={setActiveStory}
+                          currentPost={currentPost} setCurrentPost={setCurrentPost}
+                          previousPage={previousPage} setPreviousPage={setPreviousPage}/>
+            <Profile id={ROUTES.PROFILE} fetchedUser={fetchedUser} setActiveStory={setActiveStory}/>
+            <Persik id={ROUTES.PERSIK} setActiveStory={setActiveStory}/>
+            <EventPage id={ROUTES.EVENTPAGE} go={onStoryChange} activeStory={activeStory}
+                       setActiveStory={setActiveStory}
+                       currentPost={currentPost} setCurrentPost={setCurrentPost} fetchedUser={fetchedUser}
+                       previousPage={previousPage} setPreviousPage={setPreviousPage}/>
         </Epic>
     </SplitCol>
 }

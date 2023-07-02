@@ -16,7 +16,7 @@ export const getIdUserToEvent = async (id) => {
 }
 
 export const getIdUserToIdEvent = async (uid, eid) => {
-    const {data} = await host.post(`api/userEvent/IdId`,{"user_id": uid, "event_id": eid})
+    const {data} = await host.post(`api/userEvent/IdId`, {"user_id": uid, "event_id": eid})
     return data
 }
 

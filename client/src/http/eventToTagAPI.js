@@ -2,7 +2,7 @@ import host from "./index";
 
 
 export const addEventToTag = async (eid, tid) => {
-    const {data} = await host.post(`api/eventTag`, {"event_id": eid, "tag_id":tid})
+    const {data} = await host.post(`api/eventTag`, {"event_id": eid, "tag_id": tid})
     return data
 }
 export const getEventToTags = async () => {
@@ -15,7 +15,7 @@ export const getIdEventToTag = async (id) => {
     return data
 }
 export const getIdEventToIdTag = async (eid, tid) => {
-    const {data} = await host.get(`api/eventTag/IdId`, {"event_id": eid, "tag_id":tid})
+    const {data} = await host.get(`api/eventTag/IdId`, {"event_id": eid, "tag_id": tid})
     return data
 }
 export const getPictureByEventId = async (eid) => {
