@@ -9,6 +9,8 @@ router.post('/eventTag', eventTagController.addEventToTag)
 router.get('/eventTag', eventTagController.getAllEventToTag)
 router.get('/eventTag/:id', eventTagController.getIdEventToTag)
 router.get('/eventTag/IdId', eventTagController.getIdEventToIdTag)
+router.get('/eventTag/picture/:id', eventTagController.getPictureByEventId)
+router.get('/eventTag/tagId/:id', eventTagController.getTagIdByEventId)
 
 
 router.delete('/eventTag/:id', eventTagController.deleteIdEventToTag)
