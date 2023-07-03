@@ -15,7 +15,7 @@ import {Avatar,
 import {ROUTES} from "../routes";
 import {addUser} from "../http/userAPI";
 import {getEvents, getIdEvent} from "../http/eventAPI";
-import {getIdUserToIdTag, getTagToIdUser} from "../http/userToTagAPI";
+import {addUserToTag, deleteIdUserToTag, getIdUserToIdTag, getTagToIdUser} from "../http/userToTagAPI";
 import {getEventByTagId, getPictureByEventId, getTagIdByEventId} from "../http/eventToTagAPI";
 import {getTags} from "../http/tagAPI";
 import {addUserToEvent, deleteIdUserToEvent, getIdUserToIdEvent} from "../http/userToEventAPI";
@@ -24,27 +24,27 @@ const Profile = ({id, setActiveStory, fetchedUser,}) => {
     const [mode, setMode] = React.useState('all');
     const [menuOpened, setMenuOpened] = React.useState(false);
     const [selected, setSelected] = React.useState('my_tag');
-    let [nameTags, setNameTags] = React.useState([]);
-    let [nameUsTags, setUsNameTags] = React.useState([]);
-
-
+    const [nameTags, setNameTags] = React.useState([]);
+    const [nameUsTags, setUsNameTags] = React.useState([]);
 
     useEffect(() => {
         async function fetchData() {
             const tags = await getTags();
-            let idUserTag = []//получаем связи
-
+            let idUserTag;//получаем связи
+            const localNameUsTags = nameUsTags;
+            const localNameTags = nameTags;
 
             for (const i in tags) {//перебор по тегам
                 idUserTag = await getIdUserToIdTag(fetchedUser.id, tags[i].id)//получаем связи
                 if (idUserTag?.id) {
-                    nameUsTags.push(tags[i].name);//если есть, в теги пользователя
+                    localNameUsTags.push(tags[i]);//если есть - в теги пользователя
                 }else {
-                    nameTags.push(tags[i].name);//иначе в остальные
+                    localNameTags.push(tags[i]);//иначе в остальные
                 }
             }
+            setUsNameTags(localNameUsTags)
+            setNameTags(localNameTags);
             console.log(nameTags);
-
         }
 
         fetchData();
@@ -74,19 +74,24 @@ const Profile = ({id, setActiveStory, fetchedUser,}) => {
             {selected === 'my_tag' && (
 
             <Group id="tab-content-my_tag" aria-labelledby="tab-my_tag" role="tabpanel">
-               {nameUsTags.map((buttonText) => (
-              <Div key={buttonText}>
+               {nameUsTags.map((userTag) => (
+              <Div key={userTag.name}>
                 <Button
                   align="center"
                   appearance="accent"
                   mode="secondary"
                   size="s"
                   onClick={async () => {
-                      console.log(buttonText)
+                      //console.log(userTag)
+                      await deleteIdUserToTag((await getIdUserToIdTag(fetchedUser.id, userTag.id)).id)
+                      setUsNameTags(nameUsTags.filter(s => s.id !== userTag.id));
+                      setNameTags([userTag, ...nameTags]);
 
+                      //console.log((await deleteIdUserToTag(fetchedUser.id, userTag.id)))
+                      //console.log(fetchedUser.id, userTag.id)
                   }}
                 >
-                  {buttonText}
+                  {userTag.name}
                 </Button>
                 </Div>
                 ))}
@@ -98,15 +103,20 @@ const Profile = ({id, setActiveStory, fetchedUser,}) => {
               aria-labelledby="tab-add_teg"
               role="tabpanel"
             >
-              {nameTags.map((buttonText) => (
-              <Div key={buttonText}>
+              {nameTags.map((tag) => (
+              <Div key={tag.name}>
                 <Button
                   align="center"
                   appearance="accent"
                   mode="secondary"
                   size="s"
+                  onClick={async () => {
+                      await addUserToTag(fetchedUser.id, tag.id)
+                      setNameTags(nameTags.filter(s => s.id !== tag.id));
+                      setUsNameTags([tag, ...nameUsTags]);
+                  }}
                 >
-                  {buttonText}
+                  {tag.name}
                 </Button>
                 </Div>
                 ))}
