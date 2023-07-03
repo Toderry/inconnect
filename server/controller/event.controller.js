@@ -28,7 +28,7 @@ class EventController {
     }
 
     /**************************************************************
-     * Получение id события
+     * Получение события по id
      * @param req
      * @param res
      * @returns {Promise<void>}
@@ -42,7 +42,7 @@ class EventController {
     }
 
     /**************************************************************
-     * Получение name (названия) события
+     * Получение события по name (названия)
      * @param req
      * @param res
      * @returns {Promise<void>}

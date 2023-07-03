@@ -108,7 +108,6 @@ class eventToTagController {
      * Удаление связи по id
      * @param req
      * @param res
-     * @param res
      * @returns {Promise<void>}
      **************************************************************/
     async deleteIdEventToTag(req, res) {
