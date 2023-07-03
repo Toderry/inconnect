@@ -22,6 +22,7 @@ import {ROUTES} from "./routes";
 import {addUser} from "./http/userAPI";
 import {getEvents} from "./http/eventAPI";
 import {getPictureByEventId, getTagIdByEventId, getEventByTagId} from "./http/eventToTagAPI";
+import {getEventsByUserId} from "./http/userToEventAPI";
 
 const App = () => {
     const [activeStory, setActiveStory] = useState(ROUTES.EVENTS);
@@ -49,6 +50,8 @@ const App = () => {
     const [picture, setPicture] = useState(null);
     // Для примера получения списка событий по id тега:
     const [events, setEvents] = useState([]);
+    // Для примера получения списка событий по id пользователя:
+    const [eventsByUserId, setEventsByUserId] = useState([]);
 
 
     const onStoryChange = (e) => setActiveStory(e.currentTarget.dataset.story);
@@ -72,11 +75,10 @@ const App = () => {
             setTagId(await getTagIdByEventId(1));
             setPicture(await getPictureByEventId(1));
 
-            // Пример получения списка событий по id тега:
-            setEvents(await getEventByTagId(1));
-            console.log(`events = ${events}`);
-            console.log(`events[0] = ${events[0]}`);
-            console.log(`events[0].name = ${events[0].name}`);
+            // Пример получения списка событий по id пользователя:
+            setEventsByUserId((await getEventsByUserId(140129939)));
+            console.log(`events = ${eventsByUserId}`);
+            console.log(`events = ${eventsByUserId[0].name}`);
 
         }
 

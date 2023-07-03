@@ -41,6 +41,14 @@ export const getIdUserToIdEvent = async (uid, eid) => {
     return data
 }
 
+/**************************************************************
+ * Получение списка активных событий по user_id (пользователя)
+ **************************************************************/
+export const getEventsByUserId = async (user_id) => {
+    const {data} = await host.get(`api/userEvent/eventByUser/${user_id}`)
+    return data
+}
+
 
 /**************************************************************
  * Удаление связи по id

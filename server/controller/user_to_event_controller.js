@@ -62,6 +62,19 @@ class userToEventController {
         res.json(userToEvent.rows[0])
         //console.log(JSON.stringify(userToEvent.rows))
     }
+    /**************************************************************
+     * Получение списка активных событий по user_id (пользоватля)
+     * @param req
+     * @param res
+     * @returns {Promise<void>}
+     **************************************************************/
+    async getEventsByUserId(req,res) {
+        const user_id = req.params.user_id
+        const events = await db.query(`select e.* from event as e 
+    inner join user_to_event as ue on e.id = ue.event_id 
+    where ue.user_id = $1;`, [user_id])
+        res.json(events.rows)
+    }
 
     /**************************************************************
      * Удаление связи по id
