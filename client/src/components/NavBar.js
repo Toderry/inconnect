@@ -78,7 +78,8 @@ export const NavigationBar = ({
             <Sobitia id={ROUTES.SOBITIA} posts={posts} go={onStoryChange}
                      activeStory={activeStory} setActiveStory={setActiveStory}
                      currentPost={currentPost} setCurrentPost={setCurrentPost}
-                     previousPage={previousPage} setPreviousPage={setPreviousPage}/>
+                     previousPage={previousPage} setPreviousPage={setPreviousPage}
+                     fetchedUser={fetchedUser}/>
             <Profile id={ROUTES.PROFILE} fetchedUser={fetchedUser} setActiveStory={setActiveStory}/>
             <Persik id={ROUTES.PERSIK} setActiveStory={setActiveStory}/>
             <EventPage id={ROUTES.EVENTPAGE} go={onStoryChange} activeStory={activeStory}
