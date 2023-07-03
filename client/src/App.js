@@ -20,9 +20,9 @@ import Icon28Newsfeed from '@vkontakte/icons/dist/28/newsfeed';
 import {NavigationBar} from "./components/NavBar";
 import {ROUTES} from "./routes";
 import {addUser} from "./http/userAPI";
-import {getEvents} from "./http/eventAPI";
+import {getEvents, getIdEvent} from "./http/eventAPI";
 import {getPictureByEventId, getTagIdByEventId, getEventByTagId} from "./http/eventToTagAPI";
-import {getEventsByUserId} from "./http/userToEventAPI";
+import {getTagToIdUser} from "./http/userToTagAPI";
 
 const App = () => {
     const [activeStory, setActiveStory] = useState(ROUTES.EVENTS);
@@ -46,12 +46,12 @@ const App = () => {
     const isVKCOM = platform !== Platform.VKCOM;
 
     const [posts, setPosts] = useState([]);
+    const [RecPosts, setRecPosts] = useState([]);
+
     const [tagId, setTagId] = useState(null);
     const [picture, setPicture] = useState(null);
     // Для примера получения списка событий по id тега:
     const [events, setEvents] = useState([]);
-    // Для примера получения списка событий по id пользователя:
-    const [eventsByUserId, setEventsByUserId] = useState([]);
 
 
     const onStoryChange = (e) => setActiveStory(e.currentTarget.dataset.story);
@@ -72,13 +72,31 @@ const App = () => {
             addUser(user.id);
 
             setPosts(await getEvents());
+
+
+            const tagUs = await getTagToIdUser(user.id);//теги пользователя
+            let postTag = [];
+
+            for (const i in tagUs ) {//перебор по тегам
+                //console.log(tagUs[i].tag_id)
+                postTag = await getEventByTagId(tagUs[i].tag_id);//события тега
+                for (const j in postTag) {//перебор по событиям
+                    RecPosts.push(await getIdEvent(postTag[j].id));//добавление события
+                }
+                //console.log(await getEventByTagId(tagUs[i].tag_id));
+
+            }
+            //console.log(await getTagToIdUser(user.id))
+
+
             setTagId(await getTagIdByEventId(1));
             setPicture(await getPictureByEventId(1));
 
-            // Пример получения списка событий по id пользователя:
-            setEventsByUserId((await getEventsByUserId(140129939)));
-            console.log(`events = ${eventsByUserId}`);
-            console.log(`events = ${eventsByUserId[0].name}`);
+            // Пример получения списка событий по id тега:
+            setEvents(await getEventByTagId(1));
+            // console.log(`events = ${events}`);
+            // console.log(`events[0] = ${events[0]}`);
+            // console.log(`events[0].name = ${events[0].name}`);
 
         }
 
@@ -165,7 +183,7 @@ const App = () => {
                             </SplitCol>
                         )}
                         <NavigationBar setActiveStory={setActiveStory} activeStory={activeStory}
-                                       posts={posts} fetchedUser={fetchedUser}
+                                       posts={posts} RecPosts={RecPosts} fetchedUser={fetchedUser}
                                        currentPost={currentPost} setCurrentPost={setCurrentPost}
                                        previousPage={previousPage} setPreviousPage={setPreviousPage}
                         />

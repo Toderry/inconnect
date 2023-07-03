@@ -15,7 +15,7 @@ import {Icon28Newsfeed} from "@vkontakte/icons";
 
 export const NavigationBar = ({
                                   setActiveStory, activeStory, fetchedUser, posts, currentPost, setCurrentPost,
-                                  previousPage, setPreviousPage
+                                  previousPage, setPreviousPage, RecPosts,
                               }) => {
     const {viewWidth} = useAdaptivityConditionalRender();
     const onStoryChange = (e) => setActiveStory(e.currentTarget.dataset.story);
@@ -68,7 +68,7 @@ export const NavigationBar = ({
                 )
             }
         >
-            <Events id={ROUTES.EVENTS} posts={posts} go={onStoryChange} setActiveStory={setActiveStory}
+            <Events id={ROUTES.EVENTS} posts={posts} RecPosts={RecPosts} go={onStoryChange} setActiveStory={setActiveStory}
                     currentPost={currentPost} setCurrentPost={setCurrentPost}
                     previousPage={previousPage} setPreviousPage={setPreviousPage}/>
             <SearchEvents id={ROUTES.SEARCHEVENTS} posts={posts} go={onStoryChange}

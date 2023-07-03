@@ -22,6 +22,7 @@ const AlbumItems = ({posts, setActiveStory, setCurrentPost, previousPage, setPre
 
     useEffect(async () => {
         async function fetchData() {
+
             posts.map(async (post) => (
                 post.url = (await getPictureByEventId(post.id)).picture_url
 
@@ -57,7 +58,7 @@ const Events = (props) => {
                 }>Рекомендации</Header>}>
                     <HorizontalScroll>
                         <div style={{display: 'flex'}}>
-                            <AlbumItems posts={props.posts} setActiveStory={props.setActiveStory}
+                            <AlbumItems posts={props.RecPosts} setActiveStory={props.setActiveStory}
                                         setCurrentPost={props.setCurrentPost}
                                         previousPage={props.previousPage} setPreviousPage={props.setPreviousPage}/>
                         </div>

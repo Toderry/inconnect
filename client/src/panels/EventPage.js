@@ -21,7 +21,7 @@ const EventPage = (props) => {
             const idUserEvent = await getIdUserToIdEvent(props.fetchedUser.id, props.currentPost.id)//получаем связи
             console.log(idUserEvent?.id)
             if (idUserEvent?.id) {
-                setAddText(true)//проверка на пустату
+                setAddText(true)//проверка на пустоту
             }
         }
         if (props.currentPost.chat_link){
