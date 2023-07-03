@@ -5,4 +5,5 @@ export const ROUTES = {
     REGISTRATION: 'registration',
     PROFILE: 'profile',
     EVENTPAGE: 'eventpage',
+    SOBITIA: 'sobitia',
 };

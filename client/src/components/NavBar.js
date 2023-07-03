@@ -5,9 +5,10 @@ import Profile from "../panels/Profile";
 import Persik from "../panels/Persik";
 import React from "react";
 import EventPage from "../panels/EventPage";
+import Sobitia from "../panels/Sobitia";
 
 import Icon28Search from '@vkontakte/icons/dist/28/search';
-import Icon28Message_outline from '@vkontakte/icons/dist/28/message_outline';
+import Icon28Fire_alt_outline from '@vkontakte/icons/dist/28/fire_alt_outline';
 import Icon28User_circle_outline from '@vkontakte/icons/dist/28/user_circle_outline';
 import {ROUTES} from "../routes";
 import {Icon28Newsfeed} from "@vkontakte/icons";
@@ -43,16 +44,16 @@ export const NavigationBar = ({
                         </TabbarItem>
                         <TabbarItem
                             onClick={onStoryChange}
-                            selected={activeStory === 'messages'}
-                            data-story="messages"
+                            selected={activeStory === 'sobitia'}
+                            data-story="sobitia"
                             indicator={
                                 <Counter size="s" mode="prominent">
-                                    12
+                                    8
                                 </Counter>
                             }
-                            text="Сообщения"
+                            text="События"
                         >
-                            <Icon28Message_outline/>
+                            <Icon28Fire_alt_outline/>
                         </TabbarItem>
                         <TabbarItem
                             onClick={() => setActiveStory('profile')}
@@ -74,6 +75,10 @@ export const NavigationBar = ({
                           activeStory={activeStory} setActiveStory={setActiveStory}
                           currentPost={currentPost} setCurrentPost={setCurrentPost}
                           previousPage={previousPage} setPreviousPage={setPreviousPage}/>
+            <Sobitia id={ROUTES.SOBITIA} posts={posts} go={onStoryChange}
+                     activeStory={activeStory} setActiveStory={setActiveStory}
+                     currentPost={currentPost} setCurrentPost={setCurrentPost}
+                     previousPage={previousPage} setPreviousPage={setPreviousPage}/>
             <Profile id={ROUTES.PROFILE} fetchedUser={fetchedUser} setActiveStory={setActiveStory}/>
             <Persik id={ROUTES.PERSIK} setActiveStory={setActiveStory}/>
             <EventPage id={ROUTES.EVENTPAGE} go={onStoryChange} activeStory={activeStory}
