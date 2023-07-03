@@ -18,7 +18,7 @@ import {
 import './Events.css';
 import {ROUTES} from "../routes";
 import {getPictureByEventId} from "../http/eventToTagAPI";
-import {getIdUserToIdEvent} from "../http/userToEventAPI";
+import {getIdUserToIdEvent, getEventsByUserId} from "../http/userToEventAPI";
 
 
 const AlbumItems = ({posts, setActiveStory, setCurrentPost, fetchedUser,previousPage, setPreviousPage}) => {
@@ -30,13 +30,19 @@ const AlbumItems = ({posts, setActiveStory, setCurrentPost, fetchedUser,previous
     useEffect(async () => {
         async function fetchData() {
 
-            posts.map(async (post) => (
+            /*posts.map(async (post) => (
                 MyPosts.push(post)
             ));
 
             MyPosts.map(async (post) => (
                 post.url = (await getPictureByEventId(post.id)).picture_url//
+            ));*/
+
+            setMyPosts(await getEventsByUserId(fetchedUser.id));
+            MyPosts.map(async (post) => (
+                post.url = (await getPictureByEventId(post.id)).picture_url//
             ));
+
 
         }
 
