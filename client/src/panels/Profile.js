@@ -32,22 +32,17 @@ const Profile = ({id, setActiveStory, fetchedUser,}) => {
     useEffect(() => {
         async function fetchData() {
             const tags = await getTags();
-            const UsTags = await getTags();
-            const tagUs = await getTagToIdUser(fetchedUser.id);
             let idUserTag = []//получаем связи
 
 
             for (const i in tags) {//перебор по тегам
                 idUserTag = await getIdUserToIdTag(fetchedUser.id, tags[i].id)//получаем связи
                 if (idUserTag?.id) {
-                    nameUsTags.push(tags[i].name);//если есть в теги пользователя
+                    nameUsTags.push(tags[i].name);//если есть, в теги пользователя
                 }else {
                     nameTags.push(tags[i].name);//иначе в остальные
                 }
-
             }
-
-
             console.log(nameTags);
 
         }
