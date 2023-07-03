@@ -37,7 +37,7 @@ export const getTagToIdUser = async (user_id) => {
  * Получение связи по user_id (пользователя) и tag_id (тега)
  **************************************************************/
 export const getIdUserToIdTag = async (uid, eid) => {
-    const {data} = await host.post(`api/userTag/IdId`,{"user_id": uid, "event_id": eid})
+    const {data} = await host.post(`api/userTag/IdId`,{"user_id": uid, "tag_id": eid})
     return data
 }
 

@@ -23,6 +23,7 @@ import {addUser} from "./http/userAPI";
 import {getEvents, getIdEvent} from "./http/eventAPI";
 import {getPictureByEventId, getTagIdByEventId, getEventByTagId} from "./http/eventToTagAPI";
 import {getTagToIdUser} from "./http/userToTagAPI";
+import {getTags} from "./http/tagAPI";
 
 const App = () => {
     const [activeStory, setActiveStory] = useState(ROUTES.EVENTS);
@@ -80,13 +81,14 @@ const App = () => {
             for (const i in tagUs ) {//перебор по тегам
                 //console.log(tagUs[i].tag_id)
                 postTag = await getEventByTagId(tagUs[i].tag_id);//события тега
+
                 for (const j in postTag) {//перебор по событиям
                     RecPosts.push(await getIdEvent(postTag[j].id));//добавление события
                 }
                 //console.log(await getEventByTagId(tagUs[i].tag_id));
 
             }
-            //console.log(await getTagToIdUser(user.id))
+
 
 
             setTagId(await getTagIdByEventId(1));
