@@ -1,6 +1,5 @@
 import host from "./index";
 
-
 export const addUserToEvent = async (uid, eid) => {
     const {data} = await host.post(`api/userEvent`, {"user_id": uid, "event_id": eid})
     return data

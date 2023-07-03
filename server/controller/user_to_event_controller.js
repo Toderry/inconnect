@@ -3,7 +3,7 @@ const db = require('../db')
 class userToEventController {
 
     /**************************************************************
-     * Создание новой связи между user_id (пользоватлем) и (event_id) событием
+     * Создание новой связи между user_id (пользоватля) и event_id (события)
      * @param req
      * @param res
      * @returns {Promise<void>}
@@ -49,7 +49,7 @@ class userToEventController {
         res.json(userToEvent.rows)
     }
     /**************************************************************
-     * Получение связи по user_id пользователя и event_id события
+     * Получение связи по user_id (пользоватля) и event_id (события)
      * @param req
      * @param res
      * @returns {Promise<void>}
