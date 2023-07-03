@@ -56,7 +56,7 @@ class eventToTagController {
         const event = await db.query(`select e.* from event as e 
     inner join event_to_tag as et on et.event_id = e.id 
     where et.tag_id = $1;`, [tag_id])
-        res.json(event.rows[0])
+        res.json(event.rows)
     }
 
     async deleteIdEventToTag(req, res) {

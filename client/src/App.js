@@ -21,7 +21,7 @@ import {NavigationBar} from "./components/NavBar";
 import {ROUTES} from "./routes";
 import {addUser} from "./http/userAPI";
 import {getEvents} from "./http/eventAPI";
-import {getPictureByEventId, getTagIdByEventId} from "./http/eventToTagAPI";
+import {getPictureByEventId, getTagIdByEventId, getEventByTagId} from "./http/eventToTagAPI";
 
 const App = () => {
     const [activeStory, setActiveStory] = useState(ROUTES.EVENTS);
@@ -47,6 +47,7 @@ const App = () => {
     const [posts, setPosts] = useState([]);
     const [tagId, setTagId] = useState(null);
     const [picture, setPicture] = useState(null);
+    const [events, setEvents] = useState([]);
 
 
     const onStoryChange = (e) => setActiveStory(e.currentTarget.dataset.story);
@@ -69,9 +70,12 @@ const App = () => {
             setPosts(await getEvents());
             setTagId(await getTagIdByEventId(1));
             setPicture(await getPictureByEventId(1));
-            const pic = await getPictureByEventId(1);
-            console.log(`tag id = ${tagId.tag_id}`);
-            console.log(`picture url = ${picture.picture_url}`);
+
+            setEvents(await getEventByTagId(1));
+
+            console.log(`events = ${events}`);
+            console.log(`events[0] = ${events[0]}`);
+            console.log(`events[0].name = ${events[0].name}`);
 
         }
 

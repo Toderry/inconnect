@@ -26,6 +26,10 @@ export const getTagIdByEventId = async (eid) => {
     const {data} = await host.get(`api/eventTag/tagId/${eid}`)
     return data
 }
+export const getEventByTagId = async (tid) => {
+    const {data} = await host.get(`api/eventTag/eventByTag/${tid}`)
+    return data
+}
 
 export const deleteIdEventToTag = async (id) => {
     const {data} = await host.delete(`api/eventTag/${id}`)
