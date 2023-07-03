@@ -11,6 +11,8 @@ const EventPage = (props) => {
     const buttonText = addText ? 'Отписаться' : 'Подписаться';
     const text = addText ? 'Вы подписанны' : '';
     const [Url, setUrl] = useState('');
+    const [chatLink, setChatLink] = useState('Нет ссылки на чат.');
+
 
 
     useEffect(async () => {
@@ -22,8 +24,11 @@ const EventPage = (props) => {
                 setAddText(true)//проверка на пустату
             }
         }
-
+        if (props.currentPost.chat_link){
+            setChatLink(`Ссылка на чат: ${props.currentPost.chat_link}`);
+        }
         await fetchData();
+        console.log(`props.currentPost.chat_link = ${props.currentPost.chat_link}`)
     }, []);
 
     //console.log(`prev. page: ${props.previousPage}`)
@@ -47,6 +52,9 @@ const EventPage = (props) => {
                 </Headline>
                 <Headline level="1" style={{padding: 20}}>
                     {props.currentPost.place}
+                </Headline>
+                <Headline level="1" style={{padding: 20}}>
+                    {chatLink}
                 </Headline>
 
                 <div className="event_img">
