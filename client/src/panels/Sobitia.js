@@ -18,26 +18,31 @@ import {
 import './Events.css';
 import {ROUTES} from "../routes";
 import {getPictureByEventId} from "../http/eventToTagAPI";
+import {getIdUserToIdEvent} from "../http/userToEventAPI";
 
 
-const AlbumItems = ({posts, setActiveStory, setCurrentPost, previousPage, setPreviousPage}) => {
+const AlbumItems = ({posts, setActiveStory, setCurrentPost, fetchedUser,previousPage, setPreviousPage}) => {
 
-    const [Url, setUrl] = useState('https://cdn.culture.ru/images/cfe2929f-3608-5989-9954-39e28aa6fb48');
+    const [MyPosts, setMyPosts] = useState([]);
+    const [idUserEvent, setIdUserEvent] = useState([]);
 
 
     useEffect(async () => {
         async function fetchData() {
-            posts.map(async (post) => (
-                post.url = (await getPictureByEventId(post.id)).picture_url
 
-                //setUrl((await getPictureByEventId(post.id)).picture_url);
+            posts.map(async (post) => (
+                MyPosts.push(post)
+            ));
+
+            MyPosts.map(async (post) => (
+                post.url = (await getPictureByEventId(post.id)).picture_url
             ));
 
         }
 
         await fetchData();
     }, []);
-    return posts.map((post) => (
+    return MyPosts.map((post) => (
 
         <CardGrid size="l">
             <ContentCard
@@ -65,10 +70,11 @@ const Sobitia = (props) => {
         <View activePanel="horizontalCell">
             <Panel id="horizontalCell">
                 <PanelHeader>События</PanelHeader>
-                <Group header={<Header>Мои события</Header>}>
+                <Group header={<Header>Мои подписки</Header>}>
                     <div style={{display: 'block'}}>
                         <AlbumItems posts={props.posts} setActiveStory={props.setActiveStory}
                                     setCurrentPost={props.setCurrentPost}
+                                    fetchedUser={props.fetchedUser}
                                     previousPage={props.previousPage} setPreviousPage={props.setPreviousPage}/>
                     </div>
                 </Group>
