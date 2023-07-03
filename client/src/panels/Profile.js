@@ -31,8 +31,8 @@ const Profile = ({id, setActiveStory, fetchedUser,}) => {
         async function fetchData() {
             const tags = await getTags();
             let idUserTag;//получаем связи
-            const localNameUsTags = nameUsTags;
-            const localNameTags = nameTags;
+            const localNameUsTags = [];
+            const localNameTags = [];
 
             for (const i in tags) {//перебор по тегам
                 idUserTag = await getIdUserToIdTag(fetchedUser.id, tags[i].id)//получаем связи

@@ -81,7 +81,7 @@ const EventPage = (props) => {
                                 before={<Icon28Сalendar_outline />}>
                         Дата
                     </SimpleCell>
-                    <SimpleCell subtitle={props.currentPost.time} before={<Icon28Recent_outline />}>
+                    <SimpleCell subtitle={props.currentPost.time.slice(0, -3)} before={<Icon28Recent_outline />}>
                         Время
                     </SimpleCell>
                 </Group>
