@@ -52,7 +52,7 @@ const Profile = ({id, setActiveStory, fetchedUser,}) => {
 
     return(
     <Panel id={id}>
-        <PanelHeader>Дом дракона</PanelHeader>
+        <PanelHeader>Профиль</PanelHeader>
         {fetchedUser &&
             <Group>
                 <Cell
@@ -60,7 +60,7 @@ const Profile = ({id, setActiveStory, fetchedUser,}) => {
 
                     subtitle={fetchedUser.city && fetchedUser.city.title ? fetchedUser.city.title : ''}
                 >
-                    {`Привет, ${fetchedUser.first_name} ${fetchedUser.id}!`}
+                    {`Привет, ${fetchedUser.first_name} ${fetchedUser.last_name}!`}
                 </Cell>
             </Group>}
                 <DefaultInPanel
@@ -122,22 +122,7 @@ const Profile = ({id, setActiveStory, fetchedUser,}) => {
                 ))}
             </Group>
           )}
-        <Group>
-            <Div>
-                <Button stretched size="l" mode="secondary" onClick={() => setActiveStory(ROUTES.PERSIK)}
-                        data-to="persik">
-                    Show me the Персика, please
-                </Button>
-            </Div>
-        </Group>
-        <Group>
-            <Div>
-                <Button stretched size="l" mode="secondary" onClick={() => setActiveStory(ROUTES.PERSIK)}
-                        data-to="persik">
-                    Теги
-                </Button>
-            </Div>
-        </Group>
+
     </Panel>)
 };
 const DefaultInPanel = ({ menuOpened, onMenuClick, selected, setSelected }) => {
