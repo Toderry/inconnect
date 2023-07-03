@@ -47,6 +47,7 @@ const App = () => {
     const [posts, setPosts] = useState([]);
     const [tagId, setTagId] = useState(null);
     const [picture, setPicture] = useState(null);
+    // Для примера получения списка событий по id тега:
     const [events, setEvents] = useState([]);
 
 
@@ -71,8 +72,8 @@ const App = () => {
             setTagId(await getTagIdByEventId(1));
             setPicture(await getPictureByEventId(1));
 
+            // Пример получения списка событий по id тега:
             setEvents(await getEventByTagId(1));
-
             console.log(`events = ${events}`);
             console.log(`events[0] = ${events[0]}`);
             console.log(`events[0].name = ${events[0].name}`);
