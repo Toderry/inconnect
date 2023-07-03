@@ -35,7 +35,7 @@ const AlbumItems = ({posts, setActiveStory, setCurrentPost, fetchedUser,previous
             ));
 
             MyPosts.map(async (post) => (
-                post.url = (await getPictureByEventId(post.id)).picture_url
+                post.url = (await getPictureByEventId(post.id)).picture_url//
             ));
 
         }
